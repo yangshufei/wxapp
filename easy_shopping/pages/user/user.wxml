@@ -1,0 +1,37 @@
+<view class="main">
+    <view class="userinfo">
+      <block wx:if="{{!hasUserInfo && canIUse}}">
+        <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">账号登录</button>
+     </block>
+      <block wx:else>
+        <image src="{{userInfo.avatarUrl}}" background-size="cover" class="userinfo-avatar"/>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="infoManage">
+      <view class="myOrder">
+        <navigator url="/pages/order/order">
+          <image src="/images/order.png"></image>
+          <text>我的订单</text>
+        </navigator>
+      </view>
+      <view class="address">
+        <navigator url="/pages/address/address">
+          <image src="/images/address.png"></image>
+          <text>地址管理</text>
+        </navigator>
+      </view>
+      <view class="ticket">
+        <navigator url="/pages/order/order">
+          <image src="/images/ticket.png"></image>
+          <text>我的优惠券</text>
+        </navigator>
+      </view>
+      <view class="connect">
+        <navigator url="/pages/order/order">
+          <image src="/images/connect.png"></image>
+          <text>联系客服</text>
+        </navigator>
+      </view>
+  </view>
+</view>

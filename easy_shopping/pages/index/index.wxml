@@ -1,0 +1,78 @@
+<view class="main">
+    <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+          </swiper-item>
+        </block>
+    </swiper>
+    <view class="content">
+      <view class="search">
+        <navigator url="/pages/search/search">
+          <image src="/images/search.png"/>
+          <text class="search_pro">搜索想要的商品</text>
+        </navigator> 
+      </view>
+      <view class="hot_products">
+        <image src="/images/good.png" class="good" />
+        <view class="content_titie">爆款推荐</view>
+        <view class="content_title_desc">EXPLOSION RECOMMENDED</view>
+        <block wx:for="{{products}}" wx:key="index">
+          <view class="product_intro">
+            <navigator url="/pages/describe/describe?id={{item.id}}">
+              <image src="{{item.image}}"/>
+              <view class="product_info">
+                <view class="productName">{{item.productName}}</view>
+                <view class="productName_desc">{{item.describe}}</view>
+                <view class="product_price">
+                  <text class="discount_price">￥{{item.discountPrice}}</text>
+                  <text class="original_price">￥{{item.originalPrice}}</text>
+                </view>
+            </view>
+            </navigator>  
+          </view>
+        </block>
+      </view>
+      <view class="category">
+        <view class="bar {{index==0?'on':''}}" data-index="0" bindtap="select">护肤护理</view>
+        <view class="bar {{index==1?'on':''}}" data-index="1" bindtap="select">最爱美妆</view>
+        <view class="bar {{index==2?'on':''}}" data-index="2" bindtap="select">美好生活</view>
+        <view wx:if="{{index=='0'}}" class="skinCare">
+        <view wx:for="{{skinCare}}" wx:key="index" class="skinCare_content"> 
+           <navigator url="/pages/describe/describe">
+           <image src="{{item.image}}"/>
+            <view class="productName">{{item.productName}}</view>
+              <view class="product_price">
+                <text class="discount_price">￥{{item.discountPrice}}</text>
+                <text class="original_price">￥{{item.originalPrice}}</text>
+              </view>
+            </navigator>
+           </view>
+        </view>
+        <view wx:if="{{index=='1'}}" class="skinCare">
+          <view wx:for="{{bestMakeup}}" wx:key="index" class="skinCare_content">
+           <navigator url="/pages/describe/describe">
+           <image src="{{item.image}}"/>
+            <view class="productName">{{item.productName}}</view>
+              <view class="product_price">
+                <text class="discount_price">￥{{item.discountPrice}}</text>
+                <text class="original_price">￥{{item.originalPrice}}</text>
+            </view>
+           </navigator>
+          </view>
+        </view>
+        <view wx:if="{{index=='2'}}" class="skinCare">
+         <view wx:for="{{bestLife}}" wx:key="index" class="skinCare_content">
+          <navigator url="/pages/describe/describe">
+          <image src="{{item.image}}"/>
+            <view class="productName">{{item.productName}}</view>
+              <view class="product_price">
+                <text class="discount_price">￥{{item.discountPrice}}</text>
+                <text class="original_price">￥{{item.originalPrice}}</text>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

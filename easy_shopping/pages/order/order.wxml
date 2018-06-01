@@ -1,0 +1,17 @@
+<view class="main">
+    <view class="all {{index==0?'on':''}}" bindtap="transform"  data-index="0" >全部</view>
+    <view class="before-pay {{index==1?'on':''}}" bindtap="transform"  data-index="1">待付款</view>
+    <view class="paying {{index==2?'on':''}}" bindtap="transform"  data-index="2">进行中</view>
+    <view class="payed {{index==3?'on':''}}" bindtap="transform" data-index="3">已付款</view>
+    <view class="selled {{index==4?'on':''}}" bindtap="transform"  data-index="4">售后</view>
+    <view wx:if="{{index=='0'}}" class="all-content">hh
+    </view>
+    <view wx:if="{{index=='1'}}" class="beforePay-content">ff
+    </view>
+    <view wx:if="{{index=='2'}}" class="paying-content">ff
+    </view>
+    <view wx:if="{{index=='3'}}" class="payed-content">jj
+    </view>
+    <view wx:if="{{index=='4'}}" class="selled-content">tt
+    </view>
+</view>

@@ -1,0 +1,63 @@
+.main{
+    background: #F4F4F4;
+    height: 99vh;
+    padding-top: 20rpx;
+    box-sizing:border-box;
+}
+.userinfo{
+    width: 95%;
+    height: 300rpx;
+    margin: 0 auto;
+    background: rgb(202, 196, 196);
+    border-radius: 10rpx;
+    position: relative;
+    margin-bottom: 20rpx;
+    color:#9E9E9E;
+}
+.userinfo button,.userinfo image{
+    width: 200rpx;
+    height: 200rpx;
+    font-size: 30rpx;
+    line-height: 200rpx;
+    border-radius: 50%;
+    position: absolute;
+    top: 50rpx;
+    left:30rpx;
+    color: #cccccc;
+}
+.userinfo text{
+    position: absolute;
+    left: 300rpx;
+    top: 130rpx;
+}
+.infoManage view{
+    height: 100rpx;
+    line-height: 100rpx;
+    position: relative;
+    margin-bottom: 20rpx;
+    background: #fff;
+}
+.infoManage view::after{
+    content:'';
+    position: absolute;
+    top: 50rpx;
+    right: 30rpx;
+    width: 10rpx;
+    height: 10rpx;
+    border-top: 1px solid #9E9E9E;
+    border-right: 1px solid #9E9E9E;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.infoManage image{
+    position: absolute;
+    top: 35rpx;
+    left: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.infoManage text{
+    font-size: 30rpx;
+    margin-left: 80rpx;
+    color:#9E9E9E;
+}
