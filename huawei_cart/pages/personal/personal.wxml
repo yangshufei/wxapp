@@ -1,0 +1,82 @@
+<view class="userInfo bg_white">
+    <view bindtap="logIn" class="u-face">
+        <view class="u-img">
+            <image src="{{loginImage}}"></image>
+        </view>
+    </view>
+    <view bindtap="logIn" class="u-name">
+        <text>{{userName}}</text>
+    </view>
+</view>
+<view class="system-menu">
+    <view class="sm-box bg_white">
+        <view bindtap="toMyOrderList" class="sm-list system-l-l-r">
+            <view class="system-l sm-img">
+                <image src="imgs/icon_order.png"></image>
+            </view>
+            <text class="system-between-l sm-title">我的订单</text>
+            <view class="btn-next">
+                <text>全部订单</text>
+                <view class="icon-more-right">
+                    <image src="../../imgs/icon_arrow_more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toMyCouponList" class="sm-list system-l-l-r">
+            <view class="system-l sm-img">
+                <image src="imgs/icon_coupon.png"></image>
+            </view>
+            <text class="system-between-l sm-title">我的优惠券</text>
+            <view class="btn-next">
+                <view class="icon-more-right">
+                    <image src="../../imgs/icon_arrow_more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toReturnOrExchange" class="sm-list system-l-l-r">
+            <view class="system-l sm-img">
+                <image src="imgs/icon_rma.png"></image>
+            </view>
+            <text class="system-between-l sm-title">我的退换货</text>
+            <view class="btn-next">
+                <view class="icon-more-right">
+                    <image src="../../imgs/icon_arrow_more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toUserAgreement" class="sm-list system-l-l-r">
+            <view class="system-l sm-img">
+                <image src="imgs/icon_protocol.png"></image>
+            </view>
+            <text class="system-between-l sm-title">华为商城用户协议</text>
+            <view class="btn-next">
+                <view class="icon-more-right">
+                    <image src="../../imgs/icon_arrow_more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toPrivacyAgreement" class="sm-list system-l-l-r">
+            <view class="system-l sm-img">
+                <image src="imgs/icon_privacy.png"></image>
+            </view>
+            <text class="system-between-l sm-title">华为隐私协议</text>
+            <view class="btn-next">
+                <view class="icon-more-right">
+                    <image src="../../imgs/icon_arrow_more.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="sign-out-area">
+    <view bindtap="logOut" class="sign-out {{hideClass}}">
+        <text>退出登录</text>
+    </view>
+</view>
+<view class="tips tips-pure">
+    <view class="tips-cont">
+        <view>如遇退换货等售后服务相关问题，请联系商城客服</view>
+        <view>1.客服热线 400-088-6888</view>
+        <view>2.或通过【华为商城】公众号【自助服务】菜单联系在线客服</view>
+    </view>
+</view>

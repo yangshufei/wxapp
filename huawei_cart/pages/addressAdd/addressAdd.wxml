@@ -1,0 +1,76 @@
+<view class="form-edit bg_white">
+    <view class="form-edit-item ui-border-b">
+        <view class="form-edit-title">收货人</view>
+        <view class="form-edit-box textbox">
+            <input bindblur="checkValue" bindfocus="checkValue" bindinput="checkValue" id="consignee" placeholder="收货人姓名" type="text" value="{{newAddress.consignee}}"></input>
+        </view>
+        <view bindtap="clearInputValue" class="form-edit-clear {{clearIcons['consignee']}}" data-contentid="consignee">
+            <image src="../../imgs/icon-textbox-clear.png"></image>
+        </view>
+    </view>
+    <view class="form-edit-item ui-border-b">
+        <view class="form-edit-title">手机号码</view>
+        <view class="form-edit-box textbox">
+            <input bindblur="checkValue" bindfocus="checkValue" bindinput="checkValue" id="mobile" maxlength="11" placeholder="收货人电话" type="number" value="{{newAddress.mobile}}"></input>
+        </view>
+        <view bindtap="clearInputValue" class="form-edit-clear {{clearIcons['mobile']}}" data-contentid="mobile">
+            <image src="../../imgs/icon-textbox-clear.png"></image>
+        </view>
+    </view>
+    <view class="form-edit-item ui-border-b">
+        <view class="form-edit-title">所在地区</view>
+        <view class="form-edit-box textbox">
+            <input bindtap="openAddress" disabled="true" id="addressSelect" placeholder="请选择省份／城市／地区／街道" type="text" value="{{addressName.province=='请选择'?'':addressName.province}}{{addressName.city=='请选择'?'':addressName.city}}{{addressName.district=='请选择'?'':addressName.district}}{{addressName.street=='请选择'?'':addressName.street}}"></input>
+        </view>
+        <view class="form-edit-clear">
+            <image src="../../imgs/icon-textbox-clear.png"></image>
+        </view>
+    </view>
+    <view class="form-edit-item ui-border-b">
+        <view class="form-edit-title">详细地址</view>
+        <view class="form-edit-box textbox">
+            <input bindblur="checkValue" bindfocus="checkValue" bindinput="checkValue" id="address" placeholder="请输入小区／门牌号／楼层" type="text" value="{{newAddress.address}}"></input>
+        </view>
+        <view bindtap="clearInputValue" class="form-edit-clear {{clearIcons['address']}}" data-contentid="address">
+            <image src="../../imgs/icon-textbox-clear.png"></image>
+        </view>
+    </view>
+    <view class="form-edit-item justify-content-between">
+        <view class="form-edit-action">设置为默认地址</view>
+        <view class="selectbox">
+            <checkbox-group bindchange="setDefault">
+                <label class="checkbox" wx:for="{{checkItems}}" wx:key="value">
+                    <checkbox checked="{{item.checked}}" class="{{setDefault?'checked':''}}" value="{{item.value}}"></checkbox>
+                    <view class="state"></view>
+                </label>
+            </checkbox-group>
+        </view>
+    </view>
+</view>
+<view bindtap="addAddress" class="button-area">
+    <view class="button-style-1-big">
+        <text>保存并使用</text>
+    </view>
+</view>
+<view class="ecWap-mask {{addressSelectStatus}}"></view>
+<view animation="{{animationData}}" class="ecWap-box ecWap-box-lower ecWap-box-addressbox {{addressSelectStatus}}">
+    <view class="ecWap-box-header">
+        <text class="ecWap-box-title">选择</text>
+        <view bindtap="closeAddress" class="ecWap-box-close box-close">
+            <image data-status="0" src="../../imgs/icon_ecWap_close.png"></image>
+        </view>
+    </view>
+    <view class="ecWap-box-content">
+        <view bindtap="changeAddress" class="form-select-area ui-border-b system-follow-l bg_white">
+            <view class="{{showType=='start'?'current':''}}" data-parentid="0" data-type="province">{{addressName.province}}</view>
+            <view class="{{showType=='province'?'current':''}}" data-parentid="{{addressId.province}}" data-type="city">{{addressName.city}}</view>
+            <view class="{{showType=='city'?'current':''}}" data-parentid="{{addressId.city}}" data-type="district">{{addressName.district}}</view>
+            <view class="{{showType=='district'?'current':''}}" data-parentid="{{addressId.district}}" data-type="street">{{addressName.street}}</view>
+        </view>
+        <view class="current-box">
+            <view class="current-list" wx:for="{{addressDatas}}" wx:key="id">
+                <view bindtap="chooseAddress" data-id="{{item.id}}" data-name="{{item.name}}" data-type="{{nextShowType[showType]}}">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

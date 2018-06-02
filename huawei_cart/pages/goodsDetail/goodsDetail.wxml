@@ -1,0 +1,627 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view wx:if="{{!showProDown}}">
+    <view class="good-nav bg_white">
+        <view class="good-nav-tab display-flex bg_white">
+            <view bindtap="goTogoods" class="{{goodsTab?'selected':'default'}} flex">商品</view>
+            <view bindtap="goToevaluate" class="{{evaluate?'selected':'default'}} {{evaluateTab?'selected':'default'}} flex">评价</view>
+            <view bindtap="goTodetails" class="{{details?'selected':'default'}} flex">详情</view>
+            <view bindtap="goToparam" class="{{param?'selected':'default'}} flex">参数</view>
+        </view>
+    </view>
+    <scroll-view class="good-tab-box {{goods?'show':'hide'}}" scrollTop="{{scrollTop}}" scrollY="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px;">
+        <view class="good-swiper">
+            <swiper autoplay="true" bindchange="changIndex" circular="true" class="good-swiper-img imgbox bg_white" current="{{currentIndex}}">
+                <swiper-item wx:if="{{mainPhoto.photoName}}">
+                    <image class="slide-image" data-index="{{0}}" src="{{cdnPath}}{{mainPhoto.photoPath}}428_428_{{mainPhoto.photoName}}"></image>
+                </swiper-item>
+                <swiper-item wx:for="{{groupPhotoList}}" wx:key="key">
+                    <image class="slide-image" data-index="{{index+1}}" src="{{cdnPath}}{{item.photoPath}}428_428_{{item.photoName}}"></image>
+                </swiper-item>
+            </swiper>
+            <view class="swiper-process">
+                <text class="current">{{imgIndex}}</text> /{{imgAmt}}</view>
+        </view>
+        <view class="good-meta-area bg_white">
+            <view class="good-meta-cont good-meta-base">
+                <view class="good-meta-name display-flex">
+                    <view class="g-name">{{name}}</view>
+                    <view bindtap="openGetCoupon" class="good-coupons-btn" data-status="1" wx:if="{{conponBtn}}">
+                        <image bindtap="getCoupon" src="imgs/icon_good_coupons.png"></image>
+                    </view>
+                </view>
+                <view class="good-meta-price display-flex">
+                    <view class="g-rushbuy" style="display:inline-block;" wx:if="{{showSalePrice}}">
+                        <image src="imgs/icon_rushbuy.png"></image>
+                    </view>
+                    <view class="g-price display-flex red" wx:if="{{showPrice&&showPrice!='null'}}">¥<view>{{unitPrice}}</view>
+                    </view>
+                    <view class="g-price del gray" wx:if="{{showSalePrice}}">¥{{orderPrice}}</view>
+                    <view class="g-price display-flex red" wx:if="{{!showPrice&&showPrice!='null'}}">暂无报价</view>
+                </view>
+                <view bindtap="opentext" class="good-meta-promotion display-flex {{openIcon?'openDesc':''}}">
+                    <view class="g-promotion">
+                        <text class="{{!openIcon?'':'textBeyond'}}">
+                            <text class="g-promotion-cont">{{sbomPromWord}}</text>
+                        </text>
+                    </view>
+                    <view class="icon-arrow-more {{openIcon?'icon-more-top':'icon-more-bottom'}}" wx:if="{{sbomPromWord.length>60}}">
+                        <image src="../../imgs/icon_arrow_more.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="opensupport" class="good-meta-match" data-status="1" wx:if="{{showGifts}}">
+                <view class="good-match-area display-flex align-items-center ui-border-t">
+                    <text class="align-self good-meta-leftTitle">配</text>
+                    <view bindtap="opensupport" class="good-match-list display-flex" data-status="1">
+                        <view class="good-match-img" wx:for="{{giftList}}" wx:key="key">
+                            <image src="{{cdnPath}}{{item.photoPath}}428_428_{{item.photoName}}" wx:if="{{item.selected}}" wx:for="{{item}}" wx:key="key"></image>
+                        </view>
+                    </view>
+                    <view bindtap="opensupport" class="btn-next" data-status="1">
+                        <text>选择</text>
+                        <view class="icon-more-right">
+                            <image src="../../imgs/icon_arrow_more.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="good-meta-area bg_white">
+            <view class="good-meta-sku">
+                <view class="good-sku-area display-flex" wx:for="{{deal_skuAttrValueList}}" wx:key="key">
+                    <text class="good-meta-skuTitle">{{item.classifyName}}</text>
+                    <view class="good-sku-list display-flex">
+                        <view bindtap="selectGood" class="checkbox-text {{subItem.status==2?'checkbox-text-checked':subItem.status==0?'checkbox-text-disabled':''}}" data-attrname="{{subItem.attrname}}" data-indexnum="{{item.indexnum}}" data-skuIdList="{{subItem.skuIdList}}" data-status="{{subItem.status}}" wx:for="{{item.attrList}}" wx:for-item="subItem" wx:key="key">
+                            <text>{{subItem.attrname}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="good-meta-sku">
+                <view class="good-sku-area display-flex ui-border-t good-sku-numbox">
+                    <text class="good-meta-skuTitle">数量</text>
+                    <view class="good-sku-list display-flex">
+                        <view class="good-sku-num display-flex">
+                            <view bindtap="reduceNum" class="sku-minu {{numDelClass}}" data-skuLimitQty="{{skuLimitQty}}">
+                                <image src="imgs/icon_minus.png"></image>
+                            </view>
+                            <input class="sku-editNum" disabled="disabled" placeholder="" type="text" value="{{amount}}"></input>
+                            <view bindtap="addNum" class="sku-add  {{numAddClass}}" data-skuLimitQty="{{skuLimitQty}}">
+                                <image src="imgs/icon_add.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="good-meta-area bg_white" wx:if="{{commentsFirst&&commentsFirst.length!=0}}">
+            <view class="good-meta-header display-flex align-items-center">
+                <text class="good-meta-title">用户评价<text>({{count}}条)</text>
+                </text>
+                <view bindtap="loadMoreevaluate" class="btn-next">
+                    <text>查看全部评论</text>
+                    <view class="icon-more-right">
+                        <image src="../../imgs/icon_arrow_more.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="good-meta-review">
+                <view class="review-area">
+                    <view class="review-keyword">
+                        <view class="keyword-label" wx:for="{{hotTags}}" wx:key="key">
+                            <text>{{item.tagName}}</text>
+                            <text>（{{item.count}}）</text>
+                        </view>
+                    </view>
+                    <view class="review-content">
+                        <view class="review-cont-area">
+                            <view bindtap="loadMoreevaluate" class="info">
+                                <view class="user-face">
+                                    <image src="{{headImage}}"></image>
+                                </view>
+                                <view class="user-info">
+                                    <text class="user-name">{{userName}}</text>
+                                    <text class="time">{{creationTime}}</text>
+                                </view>
+                            </view>
+                            <view bindtap="loadMoreevaluate" class="word">{{content}}</view>
+                            <scroll-view class="review-img review-img-swiper" scrollX="true" style="width: {{windowWidth}}px;" wx:if="{{images.length!=0}}">
+                                <view class="review-img-box">
+                                    <view class="review-img-item" wx:for="{{images}}" wx:for-item="itemName" wx:key="key">
+                                        <image bindtap="swipclick" class="slide-image" data-bigimages="{{images}}" data-content="{{content}}" data-index="{{index}}" data-large="{{itemName.large}}" data-score="{{scorePer}}" src="{{itemName.small}}"></image>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                            <view bindtap="loadMoreevaluate" class="reply" wx:if="{{replies.length!=0&&commentsFirst}}">
+                                <view class="reply-cont" wx:for="{{replies}}" wx:key="key">
+                                    <text class="red">{{item.replyerName}}：</text>{{item.replyContent}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="pro-meta-area bg_white related-area" wx:if="{{relatedProduct}}">
+            <view class="good-meta-header system-item-center">
+                <text class="good-meta-title">关联商品</text>
+            </view>
+            <view class="related-area-content">
+                <navigator class="related-area-item" hoverClass="navigator-hover" url="../goodsDetail/goodsDetail?prdId={{item.productID}}" wx:for="{{relatedProductList}}" wx:key="key">
+                    <view class="g-img">
+                        <image src="{{cdnPath}}{{item.defaultImgPath}}"></image>
+                    </view>
+                    <view class="g-name system-item-center">
+                        <text>{{item.productName}}</text>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="hr-65"></view>
+    </scroll-view>
+    <scroll-view bindscrolltolower="loadCommentMore" class="good-tab-box {{evaluate?'show':'hide'}}" lowerThreshold="10" scrollTop="{{scrollTop}}" scrollY="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px;">
+        <view class="good-meta-area review-rate" wx:if="{{!noComments}}">
+            <view class="review-rate-praise">
+                <text class="g-title">好评度</text>
+                <text class="g-rate">{{goodRate}}%</text>
+            </view>
+            <view class="review-keyword review-rate-keyword">
+                <view class="keyword-label" wx:for="{{hotTags}}" wx:key="key">
+                    <text>{{item.tagName}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="review-content bg_white">
+            <view class="review-cont-area ui-border-t" wx:for="{{comments}}" wx:key="key">
+                <view class="info">
+                    <view class="user-face">
+                        <image src="{{item.headImage}}"></image>
+                    </view>
+                    <view class="user-info">
+                        <text class="user-name">{{item.userName}}</text>
+                    </view>
+                    <view class="star-area" wx:if="{{!noComments}}">
+                        <view class="star-gray"></view>
+                        <view class="star-red" style="width: {{item.scorePercent}}%;"></view>
+                    </view>
+                </view>
+                <view class="word">{{item.content}}</view>
+                <view class="review-img" wx:if="{{item.images.length!=0}}">
+                    <view class="review-img-item" wx:for="{{item.images}}" wx:for-item="itemName" wx:key="key">
+                        <image bindtap="swipclick" class="slide-image" data-bigimages="{{item.images}}" data-content="{{item.content}}" data-index="{{index}}" data-large="{{itemName.large}}" data-score="{{item.scorePercent}}" src="{{itemName.small}}"></image>
+                    </view>
+                </view>
+                <view class="time-laud">
+                    <text class="time">{{item.creationTime}}</text>
+                </view>
+                <view class="reply" wx:if="{{item.replies.length!=0}}">
+                    <view class="reply-cont" wx:for="{{item.replies}}" wx:key="key">
+                        <text class="red">{{item.replyerName}}:</text>
+                        <text>{{item.replyContent}}</text>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{loadMore}}">
+                <view class="loading">
+                    <image src="../../imgs/icon_pull.png"></image>
+                    <text class="more-loading">上拉加载更多评论</text>
+                </view>
+                <view class="loading" wx:if="{{loading}}">
+                    <image src="../../imgs/loading.gif"></image>
+                </view>
+            </view>
+            <view class="buttonMore loading" wx:if="{{totalList}}">
+                <text class="loading-end">已加载全部记录</text>
+            </view>
+        </view>
+        <view class="system-empty" wx:if="{{noComments}}">
+            <view class="system-empty-cont">
+                <view class="system-empty-icon">
+                    <image src="../../imgs/empty-list.png"></image>
+                </view>
+                <view class="system-empty-tip">
+                    <text>该商品暂无评价</text>
+                </view>
+            </view>
+        </view>
+        <view class="hr-65"></view>
+    </scroll-view>
+    <scroll-view class="good-tab-box {{details?'show':'hide'}} " scrollTop="{{scrollTop}}" scrollY="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px;">
+        <view class="good-meta-area picDetail">
+            <template is="wxParse" data="{{wxParseData:detail.nodes}}"></template>
+        </view>
+        <view class="good-meta-area bg_white specification">
+            <view bindtap="loadMoreParam" class="good-meta-header display-flex align-items-center">
+                <text class="good-meta-title">主要参数</text>
+                <view class="btn-next">
+                    <text>查看全部参数与包装售后</text>
+                    <view class="icon-more-right">
+                        <image src="../../imgs/icon_arrow_more.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="specify-cont">
+                <view class="specify">
+                    <view class="WxParse-cont" wx:for="{{majorSpecificationList}}" wx:key="key">
+                        <view class="WxParse-p">
+                            <text class="WxParse-title">{{item.attrName}}</text>
+                            <text>{{item.attrValue}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="tips">
+            <view class="tips-title">特别提醒：</view>
+            <view class="tips-cont">
+                <view>※本网站尽可能地提供准确的信息。本网站内所涉及的产品图片与实物可能有细微区别，效果演示图和示意图仅供参考（图片为合成图、模拟演示图），有关产品的外观（包括但不限于颜色）请以实物为准。</view>
+                <view>※限于篇幅，本网站中所包含的信息（包括但不限于产品规格、功能说明等）可能不完整，请以有关产品使用说明书的具体信息为准。</view>
+            </view>
+        </view>
+        <view class="hr-65"></view>
+    </scroll-view>
+    <scroll-view class="good-tab-box {{param?'show':'hide'}}" scrollTop="{{scrollTop}}" scrollY="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px;">
+        <view class="specify-cont bg_white">
+            <view class="specify">
+                <view class="WxParse-header">主要参数</view>
+                <view class="WxParse-cont WxParse-flex">
+                    <view class="WxParse-p" wx:for="{{majorSpecificationList}}" wx:key="key">
+                        <text class="WxParse-title">{{item.attrName}}</text>
+                        <text>{{item.attrValue}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="specify">
+                <view class="WxParse-header">{{specifications[0].name}}</view>
+                <view class="WxParse-cont WxParse-flex">
+                    <template is="wxParse" data="{{wxParseData:pack.nodes}}"></template>
+                </view>
+            </view>
+            <view class="specify">
+                <view class="WxParse-header">{{specifications[1].name}}</view>
+                <view class="WxParse-cont WxParse-flex" wx:for="{{specifications[1].content}}" wx:key="key">
+                    <view class="WxParse-h3">{{item.name}}</view>
+                    <view class="WxParse-p" wx:for="{{item.content}}" wx:key="key">
+                        <text class="WxParse-title">{{item.name}}</text>
+                        <text>{{item.value}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="specify">
+                <view class="WxParse-header">{{specifications[2].name}}</view>
+                <view class="WxParse-cont">
+                    <template is="wxParse" data="{{wxParseData:service.nodes}}"></template>
+                </view>
+            </view>
+        </view>
+        <view class="tips">
+            <view class="tips-title">特别提醒：</view>
+            <view class="tips-cont">
+                <view>※本网站尽可能地提供准确的信息。本网站内所涉及的产品图片与实物可能有细微区别，效果演示图和示意图仅供参考（图片为合成图、模拟演示图），有关产品的外观（包括但不限于颜色）请以实物为准。</view>
+                <view>※限于篇幅，本网站中所包含的信息（包括但不限于产品规格、功能说明等）可能不完整，请以有关产品使用说明书的具体信息为准。</view>
+            </view>
+        </view>
+        <view class="hr-65"></view>
+    </scroll-view>
+    <view class="good-property-selected hide">
+        <text class="good-sku-selected-title">已选</text>
+        <view class="good-sku-selected">
+            <view class="good-selected-word">
+                <text>玫瑰金</text>
+                <text> 4GB+32GB 全网通版 套餐一 玫瑰金 4GB+32GB 全网通版 套餐一</text>
+            </view>
+            <text class="good-selected-num">x1</text>
+        </view>
+    </view>
+    <view class="good-property-action bg_white {{buttonAreaClass}}">
+        <view class="good-property-action-menu">
+            <navigator class="good-property-menu" openType="switchTab" url="../index/index">
+                <image src="../../imgs/index_goods.png"></image>
+                <text>首页</text>
+            </navigator>
+        </view>
+        <view class="good-property-action-btn">
+            <view bindtap="toBuy" class="button-style-1-big{{buttonClass}}" data-button="{{buttonText}}">
+                <view>
+                    <text>{{buttonText}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="openGetCoupon" class="ecWap-mask" data-status="0" wx:if="{{showGetCoupon}}"></view>
+    <view animation="{{animationData}}" class="ecWap-box ecWap-box-lower" wx:if="{{showGetCoupon}}">
+        <view class="ecWap-box-header">
+            <text class="ecWap-box-title">领券</text>
+            <view class="ecWap-box-close box-close">
+                <image bindtap="openGetCoupon" data-status="0" src="../../imgs/icon_ecWap_close.png"></image>
+            </view>
+        </view>
+        <view class="ecWap-box-content">
+            <view class="coupons-cont">
+                <view wx:for="{{couponCodeList}}" wx:for-index="idx" wx:key="{{key}}">
+                    <view wx:if="{{item.deliveryFree!=1&&item.amount&&item.amount!=0?true:false}}">
+                        <view class="coupons-item" wx:if="{{item.state==1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="sign_span">¥</text>
+                                    <text class="p-span">{{item.amount}}</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view bindtap="getCouponAction" class="p-button button-vip-get" data-activityCode="{{item.activityCode}}" data-batchCode="{{item.batchCode}}" data-idx="{{idx}}">
+                                    <image src="../../imgs/btn_Coupon.jpg"></image>
+                                    <text class="p-button-four">立即领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item" wx:if="{{item.state==2}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="sign_span">¥</text>
+                                    <text class="p-span">{{item.amount}}</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-had">
+                                    <text class="p-button-three">已领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item" wx:if="{{item.state==3}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="sign_span">¥</text>
+                                    <text class="p-span">{{item.amount}}</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-begin">
+                                    <text class="p-button-four">即将开始</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item" wx:if="{{item.state==-1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="sign_span">¥</text>
+                                    <text class="p-span">{{item.amount}}</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-disabled">
+                                    <text class="p-button-three">已结束</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.deliveryFree!=1&&item.discount?true:false}}">
+                        <view class="coupons-item coupons-discount" wx:if="{{item.state==1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="p-span">{{item.discount*10}}</text>
+                                    <text class="sign_span">折</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view bindtap="getCouponAction" class="p-button button-vip-get" data-activityCode="{{item.activityCode}}" data-batchCode="{{item.batchCode}}" data-idx="{{idx}}">
+                                    <image src="../../imgs/btn_Discount.jpg"></image>
+                                    <text class="p-button-four">立即领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-discount" wx:if="{{item.state==2}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="p-span">{{item.discount*10}}</text>
+                                    <text class="sign_span">折</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-had">
+                                    <text class="p-button-three">已领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-discount" wx:if="{{item.state==3}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="p-span">{{item.discount*10}}</text>
+                                    <text class="sign_span">折</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-begin">
+                                    <text class="p-button-four">即将开始</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-discount" wx:if="{{item.state==-1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">
+                                    <text class="p-span">{{item.discount*10}}</text>
+                                    <text class="sign_span">折</text>优惠券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-disabled">
+                                    <text class="p-button-three">已结束</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.deliveryFree==1?true:false}}">
+                        <view class="coupons-item coupons-noPostage" wx:if="{{item.state==1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">免邮券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view bindtap="getCouponAction" class="p-button button-vip-get" data-activityCode="{{item.activityCode}}" data-batchCode="{{item.batchCode}}" data-idx="{{idx}}">
+                                    <image src="../../imgs/btn_noPostage.jpg"></image>
+                                    <text class="p-button-four">立即领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-noPostage" wx:if="{{item.state==2}}">
+                            <view class="coupons-box">
+                                <view class="p-name">免邮券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-had">
+                                    <text class="p-button-three">已领取</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-noPostage" wx:if="{{item.state==3}}">
+                            <view class="coupons-box">
+                                <view class="p-name">免邮券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-begin">
+                                    <text class="p-button-four">即将开始</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupons-item coupons-noPostage" wx:if="{{item.state==-1}}">
+                            <view class="coupons-box">
+                                <view class="p-name">免邮券</view>
+                                <view class="p-desc">
+                                    <text>{{item.batchName}}</text>
+                                </view>
+                                <view class="p-date">
+                                    <text>有效期：{{item.beginDate}}-{{item.endDate}}</text>
+                                </view>
+                                <view class="p-button button-vip-disabled">
+                                    <text class="p-button-three">已结束</text>
+                                </view>
+                                <view class="p-line">
+                                    <image src="../../imgs/bg_v1.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="ecWap-box-footer">
+            <view bindtap="openGetCoupon" class="ecWap-box-ok box-ok" data-status="0">完成</view>
+        </view>
+    </view>
+    <view bindtap="opensupport" class="ecWap-mask" data-status="0" wx:if="{{showsupport}}"></view>
+    <view animation="{{animationData}}" class="ecWap-box ecWap-box-lower" style="position: fixed; left: 0px; width: 100%; z-index: 991; top: auto; height: 384px;" wx:if="{{showsupport}}">
+        <view class="ecWap-box-header">
+            <text class="ecWap-box-title">选择</text>
+            <view class="ecWap-box-close box-close">
+                <image bindtap="opensupport" data-status="0" src="../../imgs/icon_ecWap_close.png"></image>
+            </view>
+        </view>
+        <view class="ecWap-box-content">
+            <view class="choice-product">
+                <view class="choice-box clearfix" wx:for="{{giftList}}" wx:for-index="idx" wx:key="key">
+                    <view class="p-img" wx:if="{{item.selected}}" wx:for="{{item}}" wx:key="key">
+                        <image src="{{cdnPath}}{{item.photoPath}}428_428_{{item.photoName}}"></image>
+                    </view>
+                    <view class="p-name" wx:if="{{item.selected}}" wx:for="{{item}}" wx:key="key">
+                        <text>{{item.sbomName}}</text>
+                    </view>
+                    <view class="p-model">
+                        <view wx:for="{{item}}" wx:key="{{index}}">
+                            <view bindtap="selectGift" class="checkbox-text {{item.selected?'checkbox-text-checked':''}}" data-colorIdx="{{index}}" data-listIdx="{{idx}}">
+                                <text wx:if="{{item.giftColor.attrValue}}">{{item.giftColor.attrValue}}</text>
+                                <text wx:if="{{!item.giftColor.attrValue}}">默认</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="ecWap-box-footer">
+            <view bindtap="opensupport" class="ecWap-box-ok box-ok" data-status="0">完成</view>
+        </view>
+    </view>
+    <view class="toast {{toastState?'show':''}}" id="toast">
+        <view class="toast_cont">{{toastCont}}</view>
+    </view>
+</view>
+<view class="system-empty" wx:if="{{showProDown}}">
+    <view class="system-empty-cont">
+        <view class="system-empty-icon">
+            <image src="../../imgs/system-error.png"></image>
+        </view>
+        <view class="system-empty-tip">
+            <text>对不起，找不到商品</text>
+        </view>
+        <view class="system-empty-btn">
+            <navigator class="button-style-3" openType="switchTab" url="../index/index">
+                <text>返回首页</text>
+            </navigator>
+        </view>
+    </view>
+</view>

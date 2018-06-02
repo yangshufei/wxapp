@@ -1,0 +1,59 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/login/login",
+        "pages/goodsDetail/goodsDetail",
+        "pages/orderList/orderList",
+        "pages/orderConfirm/orderConfirm",
+        "pages/orderDetail/orderDetail",
+        "pages/personal/personal",
+        "pages/addressAdd/addressAdd",
+        "pages/addressUpdate/addressUpdate",
+        "pages/addressList/addressList",
+        "pages/couponList/couponList",
+        "pages/invoiceDetail/invoiceDetail",
+        "pages/invoiceSelect/invoiceSelect",
+        "pages/privacyAgreement/privacyAgreement",
+        "pages/userAgreement/userAgreement",
+        "pages/logisticsDetail/logisticsDetail",
+        "pages/logs/logs",
+        "pages/error/unauthorized/unauthorized",
+        "pages/error/default/default",
+        "pages/pay/paySuccess",
+        "pages/pay/payFail",
+        "pages/orderDetail/downLoad",
+        "pages/returnOrExchange/returnOrExchange",
+        "pages/returnOrExchange/returnExchangeDetail",
+        "pages/returnOrExchange/returnExchangeSubmit",
+        "pages/returnOrExchange/returnExchangeResult"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "color": "#333",
+        "selectedColor": "#ca151e",
+        "borderStyle": "black",
+        "list": [
+            {
+                "text": "首页",
+                "pagePath": "pages/index/index",
+                "iconPath": "imgs/index.png",
+                "selectedIconPath": "imgs/indexSelected.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/personal/personal",
+                "iconPath": "imgs/personal.png",
+                "selectedIconPath": "imgs/personalSelected.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 3000
+    }
+}

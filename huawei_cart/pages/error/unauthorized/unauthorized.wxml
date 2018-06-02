@@ -1,0 +1,41 @@
+<view class="user-info">
+    <view class="warrant-img">
+        <image src="imgs/icon_warrant.png"></image>
+    </view>
+    <view class="warrant-result">
+        <text>授权失败</text>
+    </view>
+    <view class="tips-warrant">
+        <view>拒绝授权“华为商城”小程序</view>
+        <view>将无法使用领取优惠券、购买商品等功能</view>
+    </view>
+</view>
+<view class="user-action">
+    <view class="user-action-title system-only-between">
+        <text>允许“华为商城+”使用我的</text>
+    </view>
+    <view class="user-action-box system-only-between bg_white">
+        <text>用户信息</text>
+        <view class="user-action-btn">
+            <view class="switch switch_open">
+                <image src="imgs/icon_switch.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="user-action-box system-only-between bg_white">
+        <text>通讯地址</text>
+        <view class="user-action-btn">
+            <view class="switch switch_open">
+                <image src="imgs/icon_switch.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="user-guide">
+    <image src="imgs/icon_triangle.png"></image>点击下方<text class="red">“重新授权”</text>按钮，按图示打开授权。</view>
+<view class="hr-45"></view>
+<view class="button-area-2">
+    <view bindtap="gotoAuth" class="button-style-square">
+        <text>重新授权</text>
+    </view>
+</view>

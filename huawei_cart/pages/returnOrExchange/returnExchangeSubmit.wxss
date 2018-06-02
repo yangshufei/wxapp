@@ -1,0 +1,289 @@
+.rma-form {
+    background-color: #FFFFFF;
+    padding: 0 32rpx;
+    margin-top: 25rpx;
+}
+
+.rmaSubmit-form {
+    margin: 0;
+}
+
+.rma-form .list {
+    display: box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    font-size: 29rpx;
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+}
+
+.rma-form .list .list-l {
+    position: relative;
+    height: 83rpx;
+    line-height: 83rpx;
+}
+
+.rma-form .list .list-l .star {
+    position: absolute;
+    left: -18rpx;
+    color: #ca141d;
+    top: 5rpx;
+    display: inline-block;
+}
+
+.rma-form .list .list-l .state {
+    position: relative;
+    top: 3rpx;
+}
+
+.rma-form .list .lsit-r {
+    box-flex: 1;
+    display: block;
+    flex: 1;
+    position: relative;
+    color: #cccccc;
+}
+
+.rma-form .list .lsit-r .select {
+    margin-left: 31rpx;
+    padding: 0 50rpx 0 0;
+    height: 83rpx;
+    position: relative;
+}
+
+.rma-form .list .lsit-r .select .icon-arrows-down {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -12rpx;
+}
+
+.rma-form .list .lsit-r .option {
+    line-height: 87rpx;
+}
+
+.rma-submit-form-reason .myRMAOrderList {
+    display: block;
+}
+
+.list .sys-good-item {
+    border-top: 1px solid #eaeaea;
+    border-bottom: 0;
+}
+
+.list .rma-good-area .good-panels {
+    padding-left: 62rpx;
+}
+
+.list .rma-good-area .good-panels .system-l {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top: -24rpx;
+}
+
+.list .rma-good-area .good-panels .good-icon {
+    left: 57rpx;
+}
+
+.list .rma-good-area .good-panels .good-img {
+    padding: 21rpx 21rpx 21rpx 0;
+}
+
+.sys-good-item .p-subtotal {
+    position: absolute;
+    right: 0;
+    bottom: 17rpx;
+}
+
+.sys-good-item .p-amount-rma {
+    display: box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    border: 2rpx solid #eeeeee;
+}
+
+.sys-good-item .p-amount-rma .total {
+    width: 42rpx;
+    height: 42rpx;
+    text-align: center;
+    font-size: 27rpx;
+    line-height: 42rpx;
+    border-left: 2rpx solid #eeeeee;
+}
+
+.sys-good-item .p-amount-rma .Subtract,.sys-good-item .p-amount-rma .plus {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 17rpx 17rpx;
+}
+
+.sys-good-item .p-amount-rma .Subtract {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxQUU4NDVBODMyMjkxMUU4QTM0QkRFODY5RDM1MTVGMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxQUU4NDVBOTMyMjkxMUU4QTM0QkRFODY5RDM1MTVGMiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjFBRTg0NUE2MzIyOTExRThBMzRCREU4NjlEMzUxNUYyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjFBRTg0NUE3MzIyOTExRThBMzRCREU4NjlEMzUxNUYyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Kl3+egAAAGBJREFUeNpi/P//P8NAACaGAQKjFo9aPGrxqMVDz+IBA4xAbAzEeUAsRCc73wHxJJDFC+loKdzygYpjRmYg8QSI9YGYk06WvgXiyQOXuEZbIKMWj1o8avGoxYPeYoAAAwBC0wyhqVAHLgAAAABJRU5ErkJggg==);
+}
+
+.sys-good-item .p-amount-rma .plus {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFNjI0NEM5NTMyMjgxMUU4ODcxNUU2Q0Q1NzQ0OUVBOSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNjI0NEM5NjMyMjgxMUU4ODcxNUU2Q0Q1NzQ0OUVBOSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkU2MjQ0QzkzMzIyODExRTg4NzE1RTZDRDU3NDQ5RUE5IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU2MjQ0Qzk0MzIyODExRTg4NzE1RTZDRDU3NDQ5RUE5Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uhUzGQAAAIxJREFUeNpiYCAPGAPxQig2JscARjItBlkoBGW/A+J4Ug1gItNiIRxsmltMMRi1eNTiUYtHLSYbMEIL+Txyiz4yAKhsn8SIVuDTC7wbqKBmZAYST4BYH4g56WTpWyCeTG59vBmN7zuanUYtHrV41OJRi/FVbTDwnhwDmMm0GFaxfAMV+ED8jFQDAAIMAM14ENUB5u5VAAAAAElFTkSuQmCC);
+}
+
+.sys-good-item .p-amount-rma .total-input {
+    width: 63rpx;
+    height: 42rpx;
+}
+
+.sys-good-item .p-amount-rma .total.disabled {
+    opacity: .3;
+}
+
+.sys-good-item .p-amount-rma .total:first-child {
+    border: none;
+}
+
+.myRMAOrderList .good-panels .good-price-num {
+    display: block;
+    color: #888;
+}
+
+.rma-form .uploadproblem {
+    align-items: stretch;
+    padding: 16rpx 0;
+}
+
+.rma-form .uploadproblem .list-l {
+    min-width: 110rpx;
+}
+
+.rma-form .uploadproblem .list-l .star {
+    top: -11rpx;
+}
+
+.rma-form .uploadproblem .list-l .state {
+    top: -16rpx;
+}
+
+.rma-form .uploadproblem .lsit-r {
+    padding: 0 0 0 31rpx;
+}
+
+.rma-form .uploadproblem .lsit-r textarea {
+    width: 100%;
+    height: 94rpx;
+    line-height: 1.5;
+    color: #333;
+    margin-top: 5rpx;
+}
+
+.rma-form .uploadproblem .lsit-r textarea.textareaIOS {
+    margin-top: -7rpx;
+}
+
+.rma-form .uploadproblem .lsit-r input {
+    padding: 0;
+    height: 55px;
+    padding-left: 15px;
+}
+
+.rma-submit-form-reason .uploadImg {
+    padding: 16rpx 0;
+    display: block;
+    height: auto;
+}
+
+.rma-submit-form-reason .uploadImg .up-title {
+    font-size: 27rpx;
+    line-height: 2.7;
+}
+
+.rma-submit-form-reason .uploadImg .up-list {
+    margin-right: 14rpx;
+    margin-bottom: 14rpx;
+    float: left;
+    position: relative;
+    background-color: #eaeaea;
+    height: 124rpx;
+    width: 124rpx;
+    display: box;
+    box-align: center;
+    box-pack: center;
+}
+
+.rma-submit-form-reason .icon-img-del {
+    position: absolute;
+    right: 2rpx;
+    bottom: 2rpx;
+}
+
+.rma-submit-form-reason .up-list .up-p {
+    color: #ccc;
+    font-size: 18rpx;
+    text-align: center;
+    position: absolute;
+    bottom: 20rpx;
+    left: 0;
+    width: 100%;
+}
+
+.uploadImg .up-list input[type=file] {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.uploadImg .up-tips {
+    font-size: 20rpx;
+    color: #888;
+    line-height: 2.7;
+}
+
+.rma-submit-form-address .list:last-child {
+    border-bottom: 0;
+}
+
+.rma-submit-form-address .lsit-r {
+}
+
+.rma-submit-form-address .lsit-r input {
+    margin-top: 2rpx;
+    padding-left: 31rpx;
+    padding-right: 50rpx;
+    color: #333;
+}
+
+.rma-submit-form-address .lsit-r .address-Select {
+    color: #333;
+}
+
+.rma-submit-form-address .icon-arrows-down {
+    position: absolute;
+    right: 0;
+    top: 12rpx;
+}
+
+.rma-tips {
+    padding: 27rpx 33rpx 0 33rpx;
+}
+
+.rma-tips .tips {
+    padding: 0;
+    background-color: #eee;
+    font-size: 22rpx;
+    color: #888;
+}
+
+.rma-tips .tips .h .tips-title {
+    padding-bottom: 12rpx;
+    color: #333;
+}
+
+.ram .button-style-square,.ram .button-style-square-disabled {
+    height: 58rpx;
+    line-height: 58rpx;
+    font-size: 27rpx;
+    border-radius: 10rpx;
+}
