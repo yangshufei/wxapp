@@ -1,0 +1,9 @@
+<view class="main">
+    <view class="good-nav">
+        <view bindtap="goTogoods" class="{{index==0?'on':''}}" data-index="0">商品</view>
+        <view bindtap="goToevaluate" class="{{index==1?'on':''}}" data-index="1">评价</view>
+        <view bindtap="goTodetails"class="{{index==2?'on':''}}" data-index="2">详情</view>
+        <view bindtap="goToparam" class="{{index==3?'on':''}}" data-index="3">参数</view>
+    </view>
+    
+</view>

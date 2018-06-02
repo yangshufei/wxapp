@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/personal/personal",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "华为商城+",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#ca151e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "image/index.png",
+        "selectedIconPath": "image/indexSelected.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/personal/personal",
+        "iconPath": "image/personal.png",
+        "selectedIconPath": "image/personalSelected.png"
+      }
+    ]
+  }
+}
