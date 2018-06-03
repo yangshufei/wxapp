@@ -1,9 +1,133 @@
 <view class="main">
-    <view class="good-nav">
-        <view bindtap="goTogoods" class="{{index==0?'on':''}}" data-index="0">商品</view>
-        <view bindtap="goToevaluate" class="{{index==1?'on':''}}" data-index="1">评价</view>
-        <view bindtap="goTodetails"class="{{index==2?'on':''}}" data-index="2">详情</view>
-        <view bindtap="goToparam" class="{{index==3?'on':''}}" data-index="3">参数</view>
+  <view class="good-nav">
+    <view bindtap="selectNav" class="select {{index==0?'on':''}}" data-index="0">商品</view>
+    <view bindtap="selectNav" class="select {{index==1?'on':''}}" data-index="1">评价</view>
+    <view bindtap="selectNav"class="select {{index==2?'on':''}}" data-index="2">详情</view>
+    <view bindtap="selectNav" class="select {{index==3?'on':''}}" data-index="3">参数</view>
+  </view>
+  <!-- 商品页 -->
+  <block wx:if="{{index=='0'}}">
+    <!-- 详情图片 -->
+    <view class="good_img">
+        <swiper autoplay="true" interval="3000" duration="800"  circular="true" bindchange="change">
+            <block wx:for="{{detail[0].image}}" wx:key="{{idx}}">
+                <swiper-item>
+                <image src="{{item}}" class="slide-image"/>
+               </swiper-item>    
+            </block> 
+        </swiper>
+        <view class="swiper-process">
+            <text class="current">{{current}}</text>
+            /{{detail[0].imageNum}}
+        </view>  
+    </view> 
+    <!-- 商品标题 -->
+    <view class="good-meta-name">
+        <view class="title">{{detail[0].title}}</view>
+        <view class="price">￥{{detail[0].price}}</view>
+        <view class="desc">{{detail[0].desc}}</view>
     </view>
-    
+    <!-- 商品选择 -->
+    <view class="good-select">
+        <view class="color">
+            <text>颜色</text>
+            <view class="color_content">
+                <view wx:for="{{detail[0].color}}" wx:key="{{item.id}}" class="color_name {{curColor==item.id?'on':''}}" bindtap="selectColor" data-id="{{item.id}}" >{{item.name}}</view>
+            </view> 
+        </view>
+        <view class="version">
+            <text>版本</text>
+            <view class="version_content">
+                <view wx:for="{{detail[0].version}}" wx:key="{{item.id}}" class="version_name {{curVersion==item.id?'on':''}}" bindtap="selectVersion" data-id="{{item.id}}">{{item.name}} </view>
+            </view>
+        </view>
+        <view class="menu">
+            <text>套餐</text>
+            <view class="menu_content">
+                <view class="menu_name on">{{detail[0].menu}}</view>
+            </view> 
+        </view>
+        <view class="require">
+            <text>定制</text>
+            <view class="require_content">
+                 <view wx:for="{{detail[0].require}}" wx:key="{{item.id}}"  class="require_name {{curRequire==item.id?'on':''}}" bindtap="selectRequire" data-id="{{item.id}}">{{item.name}} </view>
+            </view>   
+        </view>
+        <view class="num">
+            <text>数量</text>
+            <view class="count-content">
+                 <view class="count-down {{grey?'on':''}}" bindtap="minusCount" data-index="{{index}}">-</view>
+                <view class="count-num">{{num}}</view>
+                <view class="count-add {{grey1?'on':''}}" bindtap="addCount" data-index="{{index}}">+</view>
+            </view> 
+        </view>
+    </view>
+    <!-- 用户评价 -->
+    <view class="comments-info">
+     <view class="user_comment">
+         <view class="comment_title">用户评价</view>
+         <view class="comment_num">(55151条)</view>
+         <view class="look_allComment">查看全部评论</view>
+     </view>
+     <view class="comment_category">
+         <view class="system">系统流畅（28341）</view>
+         <view class="feel">手感舒适（27672）</view>
+         <view class="speed">物流快速（26468）</view>
+         <view class="response">反应灵敏（24494）</view>
+     </view>
+     <view class="user_info">
+         <image src="/image/defaultface_user.png"/>
+         <view class="tel_time">
+            <view class="tel">15907*****</view>
+            <view class="time">2018-05-31 12:01:26</view>
+        </view>
+         <view class="comment_content">物流很快，收到了，跟描述的一样</view>
+         <view class="customer_service">
+            <text>华为商城服务：</text>俗话说的好“长得漂亮，不如活得漂亮”咱家这款宝贝不仅拥有高颜值的外观，还有不一样的高性能，快快去发现体验吧！
+         </view>
+     </view>
+    </view>
+    <!-- 关联商品 -->
+    <view class="related-product">
+      <view class="title">关联商品</view>
+      <navigator url="/pages/detail/detail" class="product_info" wx:for="{{detail[0].related}}" wx:key="index">
+         <image src="{{item.image}}"/>
+         <view class="product_name">{{item.name}}</view>
+      </navigator>
+    </view>
+  </block>
+  <!-- 评价页 -->
+  <block wx:if="{{index=='1'}}">
+     <view class="evaluate">
+         <view class="review-rate">
+            <text class="review-rate_title">好评度</text>
+            <text class="review-rate_percent">98%</text>
+         </view>
+         <view class="keyWord">
+            <view class="k1">时尚高颜值</view>
+            <view class="k2">色彩细腻绚丽</view>
+            <view class="k3">性能强悍</view>
+            <view class="k4">智能识别</view>
+            <view class="k5">大屏震撼</view>
+            <view class="k6">随手都是大片</view>
+            <view class="k7">智能省电</view>
+         </view>
+     </view>
+     <view wx:for="{{comments}}" wxkey="index" class="user_comment">
+        <image src="{{item.avatar}}"/>
+        <view class="tel">{{item.tel}}</view>
+        <view class="content">{{item.content}}</view>
+        <view class="time">{{item.time}}</view>
+     </view>
+     <view class="no-more" hidden="{{hasMore}}">暂时没有更多数据</view>
+  </block>
+  <!-- 底部 -->
+  <view class="tabBar">
+      <navigator url="/pages/index/index" open-type="switchTab" class="index">
+         <image src="/image/index_goods.png"></image>
+         <view class="index_name">首页</view>
+      </navigator>
+      <button bindtap="primary"> 立即购买 </button>
+  </view>
 </view>
+

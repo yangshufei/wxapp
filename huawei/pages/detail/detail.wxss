@@ -1,1 +1,422 @@
-/* pages/detail/detail.wxss */
+
+.good-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    height: 84rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    background: #fff; 
+}
+.good-nav::after{
+    content:'';
+    position: absolute;
+    bottom: 4rpx;
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #EEEEEE;
+}
+.good-nav .select{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    flex:1;
+    height: 70rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    text-align: center; 
+}
+.good-nav .on{
+    color:#CA141D;
+    border-bottom: 2px solid #CA141D;
+}
+.good_img{
+    margin-top: 84rpx;
+    padding: 45rpx;
+    border-bottom: 30rpx solid #EEEEEE;
+    position: relative;
+    box-sizing: border-box;
+}
+swiper{
+    height: 600rpx;
+    /* position: relative;  */
+}
+swiper-item image{
+    width: 100%;
+    height: 100%;
+} 
+.swiper-process{
+    position: absolute;
+    display: inline-block;
+    right: 50rpx;
+    bottom: 5rpx;
+    width: 90rpx;
+    height: 42rpx;
+    line-height: 42rpx;
+    background: #fff;
+    color: #888;
+    font-style: italic;
+    font-size: 23rpx;
+    text-align: center;
+    border-radius: 21rpx;
+    box-shadow: 0 5rpx 11rpx 3rpx rgba(0,0,0,.1);
+}
+.current{
+    color:#333;
+}
+.good-meta-name{
+    padding: 30rpx;
+    border-bottom: 10rpx solid #EEEEEE;
+}
+.good-meta-name .title{
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-bottom: 2rpx;
+    color:#353535;
+}
+.good-meta-name .price{
+    color: #CA141D;
+    font-size: 33rpx;
+    margin-bottom: 4rpx;
+}
+.good-meta-name .desc{
+    height: 24rpx;
+    font-size: 24rpx;
+    color: rgb(139, 136, 136);
+}
+.good-select{
+    padding: 10rpx;
+}
+.good-select .color{
+    padding-left: 20rpx;
+    display: flex;
+}
+.good-select .color text{
+    font-size: 24rpx;
+    margin-right: 60rpx;
+    margin-top: 15rpx;
+    color:#888;
+}
+.good-select .color .color_content{
+    flex:1;
+}
+.color_content .color_name{
+    display: inline-block;
+    color: #333;
+    font-size: 24rpx;
+    width: 120rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border: 1rpx solid #888;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.color_content .color_name:nth-child(3n){
+    margin-right: 200rpx;
+}
+
+.good-select .version{
+    padding-left: 20rpx;
+    display: flex;
+}
+.good-select .version text{
+    font-size: 24rpx;
+    margin-right: 60rpx;
+    margin-top: 15rpx;
+    color:#888;
+}
+.good-select .version .version_content{
+    flex:1;
+}
+.version_content .version_name{
+    display: inline-block;
+    color: #333;
+    font-size: 24rpx;
+    width: 260rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border: 1rpx solid #888;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.good-select .menu{
+    padding-left: 20rpx;
+    display: flex;
+}
+.good-select .menu text{
+    font-size: 24rpx;
+    margin-right: 60rpx;
+    margin-top: 15rpx;
+    color:#888;
+}
+.good-select .menu .menu_content{
+    flex:1;
+}
+.menu_content .menu_name{
+    display: inline-block;
+    color: #333;
+    font-size: 24rpx;
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border: 1rpx solid #888;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.good-select .require{
+    padding-left: 20rpx;
+    display: flex;
+}
+.good-select .require text{
+    font-size: 24rpx;
+    margin-right: 60rpx;
+    margin-top: 15rpx;
+    color:#888;
+}
+.good-select .require .require_content{
+    flex:1;
+}
+.require_content .require_name{
+    display: inline-block;
+    color: #333;
+    font-size: 24rpx;
+    width: 120rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border: 1rpx solid #888;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.good-select .num{
+    padding-left: 20rpx;
+    display: flex;
+}
+.good-select .num text{
+    font-size: 24rpx;
+    margin-right: 60rpx;
+    margin-top: 15rpx;
+    color:#888;
+}
+.count-content{
+    display: inline-block;
+    width: 250rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border:1px solid #EEEEEE;
+    text-align: center;
+    border-radius: 30rpx;
+    display: flex;
+    color: #333;
+    overflow: hidden;
+}
+.count-content .count-down{
+    flex:1;
+}
+.count-content .count-num{
+   flex:1.2;
+   border-left: 1px solid #eee;
+   border-right:1px solid #eee;
+   font-size: 30rpx;
+} 
+.count-content .count-add{
+    flex:1;
+}
+.count-content .on{
+    background: #ddd;
+}
+.color_content .on,.version_content .on,.menu_content .on,.require_content .on{
+    color: #CA141D;
+    border:3rpx solid #CA141D
+}
+
+.comments-info{
+    border-top: 5px solid #EEEEEE;
+}
+.comments-info .user_comment{
+    height: 80rpx;
+    line-height: 80rpx;
+    position: relative;
+    border-bottom: 1rpx solid #eee;
+}
+.user_comment .comment_title{
+    display: inline-block;
+    margin-left: 20rpx;
+    margin-right: 30rpx;
+    font-size: 30rpx;
+    color: #333;
+}
+.user_comment .comment_num{
+    display: inline-block;
+    font-size: 30rpx;
+}
+.user_comment .look_allComment{
+    float: right;
+    margin-right: 50rpx;
+    font-size: 24rpx;
+    color:#888888;
+    position: relative;
+}
+.comments-info .comment_category{
+    padding: 30rpx;
+    font-size: 24rpx;
+    color: #333333;
+    /* text-align: center; */
+    /* background: #eeeeee; */
+}
+.comment_category view{
+    display: inline-block;
+    width: 250rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border:1px solid #eee;
+    border-radius: 20rpx;
+    background: #eee;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    text-align: center;
+}
+.user_info image{
+    display: inline-block;
+    margin-left: 30rpx;
+    width: 70rpx;
+    height: 70rpx;
+}
+.user_info .tel_time{
+    display: inline-block;
+    padding-left: 40rpx;
+}
+.tel_time .tel{
+    font-size: 24rpx;
+}
+.tel_time .time{
+    color: #888;
+    font-size: 24rpx;
+}
+.user_info .comment_content{
+    font-size: 26rpx;
+    margin-top: 5rpx;
+    margin-left: 30rpx;
+}
+.user_info .customer_service{
+    background: #eeeeee;
+    font-size: 24rpx;
+    color: #333333;
+    padding: 10rpx;
+    margin: 30rpx;
+    border-radius: 2rpx;
+}
+.customer_service text{
+    color: #CA141D;
+}
+.related-product{
+    padding: 10rpx 30rpx;
+    border-top: 10rpx solid #eee;
+}
+.related-product .title{
+    height: 50rpx;
+    font-size: 30rpx;
+    color: #333333;
+    line-height: 50rpx;
+    padding-bottom: 10rpx;
+    border-bottom: 1px solid #eee;
+}
+.related-product .product_info{
+    display: inline-block;
+    width: 33.3333%;
+    text-align: center;
+    padding: 34rpx;
+    box-sizing: border-box;
+}
+.related-product .product_info image{
+    width: 80rpx;
+    height: 80rpx;
+}
+.related-product .product_info .product_name{
+    font-size: 24rpx;
+    color: #333333;
+    text-overflow: ellipsis;
+    -webkit-line-clamp:2;
+}
+.tabBar{
+    display: fixed;
+    height: 80rpx;
+    width: 100%;
+    position: relative;
+}
+.tabBar .index{
+    height: 80rpx;
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+.tabBar image{
+    width: 38rpx;
+    height: 38rpx;
+}
+.tabBar .index_name{
+    font-size: 22rpx;
+    color: #333333;
+}
+.tabBar button{
+    position: absolute;
+    bottom:0;
+    color: #ffffff;
+    font-size: 30rpx;
+    width: 85%;
+    height: 80rpx;
+    display: inline-block;
+    border-radius: 0;
+    background: #CA141D;
+    margin: 0;
+    padding: 0;
+}
+
+/* 评价页面 */
+.evaluate{
+    margin-top: 84rpx;
+    text-align: center;
+    background: #CA141D;
+    padding: 20rpx 60rpx;
+    color: #ffffff;
+}
+.evaluate .review-rate{
+    margin-top: 10rpx;
+    margin-bottom: 5rpx;
+}
+.review-rate .review-rate_title{
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+}
+.review-rate .review-rate_percent{
+    font-size: 45rpx;
+    font-weight: bold;
+}
+.evaluate .keyWord{
+    font-size: 28rpx;
+}
+.evaluate .keyWord view{
+    display: inline-block;
+    padding: 10rpx 15rpx;
+    border-radius: 30rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    margin: 9rpx 11rpx;
+    background-color: rgba(255,255,255,0.2);
+}
+
