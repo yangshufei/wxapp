@@ -1,4 +1,6 @@
-
+@import '../../style/detail_comment.wxss';
+@import '../../style/detail_detail.wxss';
+/* 顶部导航栏 */
 .good-nav{
     position: fixed;
     left: 0;
@@ -32,6 +34,7 @@
     color:#CA141D;
     border-bottom: 2px solid #CA141D;
 }
+/* swiper图片轮播部分 */
 .good_img{
     margin-top: 84rpx;
     padding: 45rpx;
@@ -66,6 +69,7 @@ swiper-item image{
 .current{
     color:#333;
 }
+/* 商品标题部分 */
 .good-meta-name{
     padding: 30rpx;
     border-bottom: 10rpx solid #EEEEEE;
@@ -86,9 +90,11 @@ swiper-item image{
     font-size: 24rpx;
     color: rgb(139, 136, 136);
 }
+/* 类别选择部分 */
 .good-select{
     padding: 10rpx;
 }
+/* 颜色选择 */
 .good-select .color{
     padding-left: 20rpx;
     display: flex;
@@ -119,7 +125,7 @@ swiper-item image{
 .color_content .color_name:nth-child(3n){
     margin-right: 200rpx;
 }
-
+/* 版本选择 */
 .good-select .version{
     padding-left: 20rpx;
     display: flex;
@@ -147,6 +153,7 @@ swiper-item image{
     margin-right: 20rpx;
     margin-bottom: 20rpx;
 }
+/* 套餐选择 */
 .good-select .menu{
     padding-left: 20rpx;
     display: flex;
@@ -174,6 +181,7 @@ swiper-item image{
     margin-right: 20rpx;
     margin-bottom: 20rpx;
 }
+/* 定制选择 */
 .good-select .require{
     padding-left: 20rpx;
     display: flex;
@@ -201,6 +209,7 @@ swiper-item image{
     margin-right: 20rpx;
     margin-bottom: 20rpx;
 }
+/* 数量选择 */
 .good-select .num{
     padding-left: 20rpx;
     display: flex;
@@ -242,7 +251,7 @@ swiper-item image{
     color: #CA141D;
     border:3rpx solid #CA141D
 }
-
+/* 评论信息部分 */
 .comments-info{
     border-top: 5px solid #EEEEEE;
 }
@@ -322,9 +331,11 @@ swiper-item image{
 .customer_service text{
     color: #CA141D;
 }
+/* 关联商品部分 */
 .related-product{
     padding: 10rpx 30rpx;
     border-top: 10rpx solid #eee;
+    margin-bottom: 70rpx;
 }
 .related-product .title{
     height: 50rpx;
@@ -351,18 +362,24 @@ swiper-item image{
     text-overflow: ellipsis;
     -webkit-line-clamp:2;
 }
+/* 底部边栏部分 */
 .tabBar{
-    display: fixed;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
     height: 80rpx;
     width: 100%;
-    position: relative;
+    /* position: relative; */
 }
 .tabBar .index{
     height: 80rpx;
     display: inline-block;
     width: 15%;
     text-align: center;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eee; 
+    background: #fff;
 }
 .tabBar image{
     width: 38rpx;
@@ -386,37 +403,5 @@ swiper-item image{
     padding: 0;
 }
 
-/* 评价页面 */
-.evaluate{
-    margin-top: 84rpx;
-    text-align: center;
-    background: #CA141D;
-    padding: 20rpx 60rpx;
-    color: #ffffff;
-}
-.evaluate .review-rate{
-    margin-top: 10rpx;
-    margin-bottom: 5rpx;
-}
-.review-rate .review-rate_title{
-    font-size: 30rpx;
-    font-weight: bold;
-    margin-right: 10rpx;
-}
-.review-rate .review-rate_percent{
-    font-size: 45rpx;
-    font-weight: bold;
-}
-.evaluate .keyWord{
-    font-size: 28rpx;
-}
-.evaluate .keyWord view{
-    display: inline-block;
-    padding: 10rpx 15rpx;
-    border-radius: 30rpx;
-    height: 46rpx;
-    line-height: 46rpx;
-    margin: 9rpx 11rpx;
-    background-color: rgba(255,255,255,0.2);
-}
+
 

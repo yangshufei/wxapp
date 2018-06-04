@@ -10,7 +10,7 @@
     <!-- 详情图片 -->
     <view class="good_img">
         <swiper autoplay="true" interval="3000" duration="800"  circular="true" bindchange="change">
-            <block wx:for="{{detail[0].image}}" wx:key="{{idx}}">
+            <block wx:for="{{product[0].image}}" wx:key="{{idx}}">
                 <swiper-item>
                 <image src="{{item}}" class="slide-image"/>
                </swiper-item>    
@@ -18,39 +18,39 @@
         </swiper>
         <view class="swiper-process">
             <text class="current">{{current}}</text>
-            /{{detail[0].imageNum}}
+            /{{product[0].imageNum}}
         </view>  
     </view> 
     <!-- 商品标题 -->
     <view class="good-meta-name">
-        <view class="title">{{detail[0].title}}</view>
-        <view class="price">￥{{detail[0].price}}</view>
-        <view class="desc">{{detail[0].desc}}</view>
+        <view class="title">{{product[0].title}}</view>
+        <view class="price">￥{{product[0].price}}</view>
+        <view class="desc">{{product[0].desc}}</view>
     </view>
     <!-- 商品选择 -->
     <view class="good-select">
         <view class="color">
             <text>颜色</text>
             <view class="color_content">
-                <view wx:for="{{detail[0].color}}" wx:key="{{item.id}}" class="color_name {{curColor==item.id?'on':''}}" bindtap="selectColor" data-id="{{item.id}}" >{{item.name}}</view>
+                <view wx:for="{{product[0].color}}" wx:key="{{item.id}}" class="color_name {{curColor==item.id?'on':''}}" bindtap="selectColor" data-id="{{item.id}}" >{{item.name}}</view>
             </view> 
         </view>
         <view class="version">
             <text>版本</text>
             <view class="version_content">
-                <view wx:for="{{detail[0].version}}" wx:key="{{item.id}}" class="version_name {{curVersion==item.id?'on':''}}" bindtap="selectVersion" data-id="{{item.id}}">{{item.name}} </view>
+                <view wx:for="{{product[0].version}}" wx:key="{{item.id}}" class="version_name {{curVersion==item.id?'on':''}}" bindtap="selectVersion" data-id="{{item.id}}">{{item.name}} </view>
             </view>
         </view>
         <view class="menu">
             <text>套餐</text>
             <view class="menu_content">
-                <view class="menu_name on">{{detail[0].menu}}</view>
+                <view class="menu_name on">{{product[0].menu}}</view>
             </view> 
         </view>
         <view class="require">
             <text>定制</text>
             <view class="require_content">
-                 <view wx:for="{{detail[0].require}}" wx:key="{{item.id}}"  class="require_name {{curRequire==item.id?'on':''}}" bindtap="selectRequire" data-id="{{item.id}}">{{item.name}} </view>
+                 <view wx:for="{{product[0].require}}" wx:key="{{item.id}}"  class="require_name {{curRequire==item.id?'on':''}}" bindtap="selectRequire" data-id="{{item.id}}">{{item.name}} </view>
             </view>   
         </view>
         <view class="num">
@@ -64,7 +64,7 @@
     </view>
     <!-- 用户评价 -->
     <view class="comments-info">
-     <view class="user_comment">
+     <view class="user_comment" bindtap="toComment">
          <view class="comment_title">用户评价</view>
          <view class="comment_num">(55151条)</view>
          <view class="look_allComment">查看全部评论</view>
@@ -75,14 +75,14 @@
          <view class="speed">物流快速（26468）</view>
          <view class="response">反应灵敏（24494）</view>
      </view>
-     <view class="user_info">
+     <view class="user_info" bindtap="toComment">
          <image src="/image/defaultface_user.png"/>
          <view class="tel_time">
             <view class="tel">15907*****</view>
             <view class="time">2018-05-31 12:01:26</view>
         </view>
-         <view class="comment_content">物流很快，收到了，跟描述的一样</view>
-         <view class="customer_service">
+         <view class="comment_content" bindtap="toComment">物流很快，收到了，跟描述的一样</view>
+         <view class="customer_service" bindtap="toComment">
             <text>华为商城服务：</text>俗话说的好“长得漂亮，不如活得漂亮”咱家这款宝贝不仅拥有高颜值的外观，还有不一样的高性能，快快去发现体验吧！
          </view>
      </view>
@@ -90,7 +90,7 @@
     <!-- 关联商品 -->
     <view class="related-product">
       <view class="title">关联商品</view>
-      <navigator url="/pages/detail/detail" class="product_info" wx:for="{{detail[0].related}}" wx:key="index">
+      <navigator url="/pages/detail/detail" class="product_info" wx:for="{{product[0].related}}" wx:key="index">
          <image src="{{item.image}}"/>
          <view class="product_name">{{item.name}}</view>
       </navigator>
@@ -98,6 +98,7 @@
   </block>
   <!-- 评价页 -->
   <block wx:if="{{index=='1'}}">
+    <scroll-view class="scroll-comment" scroll-y scroll-with-animation='true' scroll-top='{{topNum}}'>
      <view class="evaluate">
          <view class="review-rate">
             <text class="review-rate_title">好评度</text>
@@ -113,14 +114,34 @@
             <view class="k7">智能省电</view>
          </view>
      </view>
-     <view wx:for="{{comments}}" wxkey="index" class="user_comment">
-        <image src="{{item.avatar}}"/>
+     <view wx:for="{{comments}}" wx:key="index" class="user_comment">
+       <view class="user_info">
+        <image class="avatar" src="{{item.avatar}}"/>
         <view class="tel">{{item.tel}}</view>
-        <view class="content">{{item.content}}</view>
-        <view class="time">{{item.time}}</view>
+        <view class="star">
+            <image src="/image/icon_star_red.png"></image>
+            <image src="/image/icon_star_red.png"></image>
+            <image src="/image/icon_star_red.png"></image>
+            <image src="/image/icon_star_red.png"></image>
+            <image
+            src="/image/icon_star_red.png"></image>
+        </view>
+       </view> 
+       <view class="content">{{item.content}}</view>
+       <view class="time">{{item.time}}</view>
      </view>
-     <view class="no-more" hidden="{{hasMore}}">暂时没有更多数据</view>
+    <view class="loading" hidden="{{noLoading}}">
+    上拉加载更多评论</view>
+    <image class="loadingImage"src="/image/loading.gif" hidden="{{noLoadingImage}}"></image>
+     <view class="no-more" hidden="{{hasMore}}">暂时没有更多评论</view>
+    </scroll-view>
   </block>
+  <!-- 详情页 -->
+  <bolck wx:if="{{index=='2'}}">
+    <view wx:for="{{detail}}" wx:key="index" class="image_detail">
+       <image src="{{item.image}}" style="height:{{item.height}}rpx" />
+    </view>
+  </bolck>
   <!-- 底部 -->
   <view class="tabBar">
       <navigator url="/pages/index/index" open-type="switchTab" class="index">

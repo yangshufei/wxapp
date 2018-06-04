@@ -4,7 +4,7 @@ Page({
 
   data: {
     index:0,      //所选导航栏
-    detail:'',     // 商品数据
+    product:'',     // 商品数据
     current:1,     // 当前图片
     num:1,          //所选商品数
     grey:true,      // -号背景色
@@ -15,30 +15,31 @@ Page({
     // 评论数据
     comments:[],
     hasMore:true,
-    page:1,
-    pageSize:4,
+    currentPage:1,
+    totalPage:1,
+    total:0,
+    noLoading:true,
+    noLoadingImage:true,
+    //详情数据
+    detail:'',
   },
+  // 获取页面评论数据
   onLoad:function(){
-    // wx.request({
-    //   url: 'https://www.easy-mock.com/mock/5b13d3d7c5450f078273c5ba/comments',
-    //   success:(res)=>{
-    //     this.setData({
-    //       comments:res.data.data
-    //     })
-    //     console.log(res.data);
-    //  }  
-    // })
-    this.requestArticle();
-  },
-  onShow: function () {
     wx.request({
-      url:'https://www.easy-mock.com/mock/5b129d3c791ed91ba99b116c/detail',
+      url: 'https://www.easy-mock.com/mock/5b129d3c791ed91ba99b116c/detail',
       success:(res)=>{
-         this.setData({
-          detail:res.data
-         })
-        //  console.log(res.data);
-      }    
+        this.setData({
+          product:res.data.product,
+          noLoading:true,
+          noLoadingImage:true,
+          comments:res.data.comments,
+          currentPage:1,
+          totalPage:res.data.totalPage,
+          total:res.data.total,
+          detail:res.data.detail
+        })
+        console.log(res.data);
+     }  
     })
   },
   // 选择导航栏
@@ -114,31 +115,37 @@ Page({
       url: '/pages/order/order'
     })
   },
-
-  // 评论页面操作
-  requestArticle(){
-    util.request({
-      url:'https://www.easy-mock.com/mock/5b13d3d7c5450f078273c5ba/comments',
-      mock: false,
-      data: {
-        start: this.data.page,
-        end: this.data.pageSize,
-      }
-    }).then(res=>{
-      // console.log(res);
-      this.setData({
-        // hasMore:false,
-        comments:res.data
-      })
-    })
+  toComment(){
+   this.setData({
+     index:1
+   })
   },
+  // 下拉加载数据评论
   onReachBottom(){
-    if(this.data.hasMore){
-      let nextPage = this.data.page + 1;
+    let {currentPage,totalPage,noLoading,noLoadingImage}=this.data;
+    console.log(currentPage,totalPage,noLoading,noLoadingImage);
+    if(currentPage >= totalPage){
       this.setData({
-        page : nextPage
-      });
-      this.requestArticle();
+        hasMore:false
+      })
+      return;
     }
+    currentPage ++;
+    this.setData({
+      noLoading:false,
+      noLoadingImage:false
+    })
+    wx.request({
+      url: 'https://www.easy-mock.com/mock/5b129d3c791ed91ba99b116c/detail',
+      success: (res)=>{
+        const comments =[...this.data.comments,...res.data.comments]; 
+        this.setData({
+          comments,
+          noLoading:true,
+          noLoadingImage:true,
+          currentPage
+        })
+      }   
+    })
   }
 })
