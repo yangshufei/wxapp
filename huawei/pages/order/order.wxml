@@ -1,0 +1,6 @@
+<view class="main">
+    <view class="address_box">
+        <view wx:if="{{!hasAddress}}" class="addAddress"></view>
+        <view wx:if="{{hasAddress}}" class="addressInfo"></view>
+    </view>
+</view>
