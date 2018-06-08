@@ -1,6 +1,12 @@
 <view class="main">
-    <view class="address_box">
-        <view wx:if="{{!hasAddress}}" class="addAddress"></view>
-        <view wx:if="{{hasAddress}}" class="addressInfo"></view>
-    </view>
+   <navigator url="../addressList/addressList">
+        <view wx:if="{{hasAddress}}" class="orders-address">
+           <view class="orders-address-name">{{address.name}}</view>
+           <view class="orders-address-phone">{{address.phone}}</view>
+           <view class="orders-address-detail">{{address.detail}}</view>
+        </view>
+        <view wx:else class="orders-address">
+           <view class="orders-no-address">添加收货地址</view>
+        </view>
+    </navigator>
 </view>

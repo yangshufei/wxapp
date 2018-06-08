@@ -1,0 +1,6 @@
+.image_detail{
+    width: 100%;
+}
+.image_detail image{
+    width: 100%;
+}

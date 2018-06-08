@@ -1,66 +1,83 @@
-// pages/personal/personal.js
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    userName: '账号登录',
+    loginImage: "imgs/defaultface_user_gray.png",
+    hide: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad: function () {
+    if(app.globalData.userName && app.globalData.userName){
+      this.setData({
+        userName:app.globalData.userName,
+        loginImage:app.globalData.loginImage,
+        hide:false
+      })
+    }
+ },
+  logIn(){
+    let that = this;
+    wx.showLoading({
+      title:'正在登录...'
+    })
+    setTimeout(function(){
+      wx.hideLoading();
+      wx.getUserInfo({
+        success: (res)=> {
+          that.setData({
+             userName: res.userInfo.nickName,
+            loginImage: res.userInfo.avatarUrl,
+            hide: false
+         })
+         wx.setStorage({
+           key: 'loginImage',
+           data: that.data.loginImage,
+           success: function(res){
+             console.log('保存成功')
+           }
+         })
+         wx.setStorage({
+          key: 'userName',
+          data: that.data.userName,
+          success: function(res){
+            console.log('保存成功')
+          }
+        })
+         },
+      })
+    },1000)  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  logOut(){
+    app.globalData.loginImage = null;
+    app.globalData.userName = null;
+     this.setData({
+      userName: '账号登录',
+      loginImage: "imgs/defaultface_user_gray.png",
+      hide: true,
+     })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  toMyOrderList: function() {
+    wx.navigateTo({
+        url: "/pages/orderList/orderList"
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  toMyCouponList: function() {
+      wx.navigateTo({
+          url: "/pages/couponList/couponList"
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  toUserAgreement: function() {
+      wx.navigateTo({
+          url: "/pages/userAgreement/userAgreement"
+      })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  toPrivacyAgreement: function() {
+      wx.navigateTo({
+          url: "/pages/privacyAgreement/privacyAgreement"
+      })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  toReturnOrExchange: function() {
+      wx.navigateTo({
+          url: "/pages/returnOrExchange/returnOrExchange"
+      });
   }
 })

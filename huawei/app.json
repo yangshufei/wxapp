@@ -1,9 +1,18 @@
 {
   "pages": [
+    "pages/order/order",
     "pages/index/index",
+    "pages/detail/detail",
     "pages/logs/logs",
     "pages/personal/personal",
-    "pages/detail/detail"
+    
+    "pages/orderList/orderList",
+    "pages/couponList/couponList",
+    "pages/userAgreement/userAgreement",
+    "pages/privacyAgreement/privacyAgreement",
+    "pages/returnOrExchange/returnOrExchange",
+    "pages/addressList/addressList",
+    "pages/addressAdd/addressAdd"
   ],
   "window": {
     "backgroundTextStyle": "light",

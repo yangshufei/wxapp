@@ -1,0 +1,98 @@
+/* 评价页面 */
+.scroll-comment{
+    margin-top: 84rpx;
+}
+.evaluate{
+    text-align: center;
+    background: #CA141D;
+    padding: 20rpx 60rpx;
+    color: #ffffff;
+}
+.evaluate .review-rate{
+    margin-top: 10rpx;
+    margin-bottom: 5rpx;
+}
+.review-rate .review-rate_title{
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+}
+.review-rate .review-rate_percent{
+    font-size: 45rpx;
+    font-weight: bold;
+}
+.evaluate .keyWord{
+    font-size: 28rpx;
+}
+.evaluate .keyWord view{
+    display: inline-block;
+    padding: 10rpx 15rpx;
+    border-radius: 30rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    margin: 9rpx 11rpx;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.user_comment{
+    padding: 30rpx 30rpx 30rpx 0;
+    font-size: 26rpx;
+    color: #333333;
+    border-bottom: 1px solid #eee;
+}
+.user_comment .user_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.usr_comment .avatar{
+    width: 40rpx;
+    height: 40rpx;
+}
+.user_comment .tel{
+    text-indent: 30rpx;
+    flex:1;
+}
+.user_comment .star{
+    width: 150rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+    /* background-color: #ccc; */
+}
+.user_comment .star image{
+    display: inline-block;
+    margin-right: 6rpx;
+    margin-left: 0;
+    width: 20rpx;
+    height: 20rpx;
+}
+.user_comment .content{
+    padding: 30rpx;
+    /* font-size: 30rpx; */
+}
+.user_comment .time{
+   padding-left: 30rpx;
+   color: #888888;
+}
+.no-more{
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-bottom: 100rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #333333;
+}
+.loading{
+    margin-top: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #333333;
+}
+.loadingImage{
+    margin-bottom: 160rpx;
+    margin-left: 350rpx;
+    height: 50rpx;
+    width: 50rpx;
+}

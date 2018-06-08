@@ -1,12 +1,11 @@
-// pages/order/order.js
+// pages/addressList/addressList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    address:'',
-    hasAddress: false,
+    address: false
   },
 
 })

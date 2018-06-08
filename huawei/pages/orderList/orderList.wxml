@@ -1,0 +1,11 @@
+<!-- <view wx:if="{{hasAddress}}" class="orders-address">
+    <view wx:for="{{address}}" wx:key="index" class="address_items">
+        <view class="address-name">{{item.name}}</view>
+        <view class="address-phone">{{item.phone}}</view>
+        <view class="address-detail">{{item.detail}}</view>
+    </view>
+</view>
+<view wx:else class="orders-address">
+    <image url="/imgs/empty-address.png"></image>
+    <view class="orders-no-address">收货地址为空</view>
+</view> -->

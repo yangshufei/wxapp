@@ -1,2 +1,46 @@
-<!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view class="userInfo">
+    <view bindtap="logIn" class="u-face">
+        <view class="u-img">
+            <image src="{{loginImage}}"></image>
+        </view>
+    </view>
+    <view bindtap="logIn" class="u-name">
+        <text>{{userName}}</text>
+    </view>
+</view>
+<view class="userInfo-content">
+    <view class="myOrder list" bindtap="toMyOrderList">
+        <image src="imgs/icon_order.png"></image>
+        <view class="order_title sm_list">我的订单</view>
+        <view class="all_order">全部订单</view>
+    </view>
+    <view class="myCoupon list" bindtap="toMyCoupon">
+        <image src="imgs/icon_coupon.png"></image>
+        <view class="order_title sm_list">我的优惠券</view>
+    </view>
+    <view class="change list" bindtap="toReturnOrExchange">
+        <image src="imgs/icon_rma.png"></image>
+        <view class="order_title sm_list">我的退换货</view>
+    </view>
+    <view class="protocol list" bindtap="toUserAgreement">
+        <image src="imgs/icon_protocol.png"></image>
+        <view class="order_title sm_list">华为商城用户协议</view>
+    </view>
+    <view class="Privacy list" bindtap="toPrivacyAgreement">
+        <image src="imgs/icon_privacy.png"></image>
+        <view class="order_title sm_list">华为隐私协议</view>
+    </view>
+</view>
+
+<view class="sign-out-area">
+    <view bindtap="logOut" class="sign-out {{hide?'hide':''}}">
+        <text>退出登录</text>
+    </view>
+</view>
+<view class="tips tips-pure">
+    <view class="tips-cont">
+        <view>如遇退换货等售后服务相关问题，请联系商城客服</view>
+        <view>1.客服热线 400-088-6888</view>
+        <view>2.或通过【华为商城】公众号【自助服务】菜单联系在线客服</view>
+    </view>
+</view>
