@@ -1,17 +1,20 @@
-<view wx:if="{{hasAddress}}" class="orders-address">
-    <view wx:for="{{address}}" wx:key="index" class="address_items">
-        <view class="address-name">{{item.name}}</view>
-        <view class="address-phone">{{item.phone}}</view>
-        <view class="address-detail">{{item.detail}}</view>
+<view class="item" wx:for="{{list}}" bindtap="toCleanOrder" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}"
+    data-tel="{{item.tel}}"  data-addre="{{item.addre}}" data-image="{{item.image}}" 
+    data-addrevalue="{{item.addrevalue}}" data-door="{{item.door}}">
+    <image src="{{item.image}}" mode="widthFix" />
+    <view class="info">
+        <text>{{item.name}}  {{item.tel}}</text>
+        <text>{{item.addre}}</text>
+    </view>
+    <view class="modify" bindtap="toModifyAddre" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}"
+        data-tel="{{item.tel}}"  data-addre="{{item.addre}}" data-image="{{item.image}}" 
+        data-addrevalue="{{item.addrevalue}}" data-door="{{item.door}}">
+        <image src="./imgs/icon-addr-edit.png" mode="widthFix" bindtap="detete" />
     </view>
 </view>
-<view wx:else class="orders-address">
-    <image src="imgs/empty-address.png"></image>
-    <view class="orders-no-address">收货地址为空</view>
-</view>
-<view class="addNewAddress">
-    <navigator url="/pages/addressAdd/addressAdd">
-     <image src="imgs/icon-add.png"></image>
-      新增收货地址
-    </navigator>
+
+<view class="add" bindtap="addAddre">
+    <image class="left" src="./imgs/icon-add.png" mode="widthFix" />
+    <view class="text">新增收货地址</view>
+    <image class="right" src="../../image/right.png" mode="widthFix" />
 </view>
