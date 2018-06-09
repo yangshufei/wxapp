@@ -1,34 +1,35 @@
-<view class="main">
-    <view class="form-edit-item">
-        <view class="form-edit-title">收货人</view>
-        <view class="form-edit-box textbox">
-            <input bindinput="checkValue" id="consignee" placeholder="收货人姓名" type="text" value="{{newAddress.consignee}}"></input>
+<!-- 信息部分开始 -->
+<form bindsubmit="formSubmit" report-submit="true">
+<view class="info">
+   <view class="item">
+     <text>收货人</text>
+      <view class="right">
+         <input type="text" name="name" placeholder="收货人姓名" focus="{{focus}}" />
+      </view>
+   </view>
+
+   <view class="item">
+     <text>手机号码</text>
+     <view class="right">
+         <input name="tel" type="number" placeholder="收货人电话" focus="{{focus}}" />
+     </view>
+   </view>
+
+   <view class="item">
+      <text>所在地区</text>
+      <view class="right">
+        <picker name="addre" class="addre" value="{{addreValue}}" range="{{addreRange}}" bindchange="addrePickerBindchange"> {{addreRange[addreValue]}}
+        </picker>
+     </view>
+   </view>
+
+   <view class="item">
+      <text>详细地址</text>
+        <view class="right">
+         <input name="door" type="text" placeholder="请输入小区/门牌号/楼层" focus="{{focus}}" />
         </view>
-    </view>
-    <view class="form-edit-item">
-        <view class="form-edit-title">手机号码</view>
-        <view class="form-edit-box textbox">
-            <input bindinput="checkValue" id="mobile" maxlength="11" placeholder="收货人电话" type="number" value="{{newAddress.mobile}}"></input>
-        </view>
-    </view>
-    <view class="form-edit-item">
-        <view class="form-edit-title">所在地区</view>
-        <view class="form-edit-box textbox">
-            <input bindtap="openAddress" disabled="true" id="addressSelect" placeholder="请选择省份／城市／地区／街道" type="text" value="{{addressName.province=='请选择'?'':addressName.province}}{{addressName.city=='请选择'?'':addressName.city}}{{addressName.district=='请选择'?'':addressName.district}}{{addressName.street=='请选择'?'':addressName.street}}"></input>
-        </view>
-    </view>
-    <view class="form-edit-item">
-        <view class="form-edit-title">详细地址</view>
-        <view class="form-edit-box textbox">
-            <input bindinput="checkValue" id="address" placeholder="请输入小区／门牌号／楼层" type="text" value="{{newAddress.address}}"></input>
-        </view>
-    </view>
-    <view class="form-edit-item">
-        <view class="form-edit-action">设置为默认地址</view>
-    </view>
-    <view bindtap="addAddress" class="button-area">
-        <view class="button-style-1-big">
-            <text>保存并使用</text>
-        </view>
-    </view>
+   </view>
+
 </view>
+ <button class="save" formType="submit">保存并使用</button>
+</form>

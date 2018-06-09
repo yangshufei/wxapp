@@ -1,1 +1,43 @@
-/* pages/addressAdd/addressAdd.wxss */
+page {  
+    display: block;  
+    min-height: 100%;  
+    background-color:#eee;
+    color:#333;
+    position: relative;
+  } 
+  .info{
+    margin-top: 2rpx;
+    background-color: #fff;
+  }
+  .item{
+    height:90rpx;
+    align-items: center;
+    display:flex;
+    margin-left:30rpx;
+    border-bottom:1rpx solid #eee;
+    font-size: 28rpx;
+  }
+  .item text{
+    display: inline-block;
+    width: 120rpx;
+  }
+  .save{
+    width:92%;
+    margin-top:30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    border-radius: 40rpx;
+    background-color: #CA141D;
+    color:#fff;
+    font-size: 30rpx;
+  }
+  .right{
+    padding-left: 30rpx;
+    width:75%;
+    display:flex;
+  }
+  input{
+    width:100%;
+  }
+  
+  
