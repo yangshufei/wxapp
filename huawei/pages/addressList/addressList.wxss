@@ -20,6 +20,11 @@ page{
     justify-content: space-between;
     width:85%;
   }
+  .info .name_tel .name{
+    font-size: 30rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+  }
   .item image{
     width:50rpx;
     padding-top:15rpx;

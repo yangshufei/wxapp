@@ -1,18 +1,23 @@
-<view class="item" wx:for="{{list}}" bindtap="toCleanOrder" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}"
+ <!-- 地址列表项 -->
+<view class="item" wx:for="{{list}}" wx:key="index" bindtap="toSelectAddr" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}"
     data-tel="{{item.tel}}"  data-addre="{{item.addre}}" data-image="{{item.image}}" 
     data-addrevalue="{{item.addrevalue}}" data-door="{{item.door}}">
     <image src="{{item.image}}" mode="widthFix" />
     <view class="info">
-        <text>{{item.name}}  {{item.tel}}</text>
+        <view class="name_tel">
+            <text class="name">{{item.name}}</text>
+            <text>{{item.tel}}</text>
+        </view>
         <text>{{item.addre}}</text>
     </view>
+    <!-- 修改列表 -->
     <view class="modify" bindtap="toModifyAddre" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}"
         data-tel="{{item.tel}}"  data-addre="{{item.addre}}" data-image="{{item.image}}" 
         data-addrevalue="{{item.addrevalue}}" data-door="{{item.door}}">
         <image src="./imgs/icon-addr-edit.png" mode="widthFix" bindtap="detete" />
     </view>
 </view>
-
+<!-- 添加地址 -->
 <view class="add" bindtap="addAddre">
     <image class="left" src="./imgs/icon-add.png" mode="widthFix" />
     <view class="text">新增收货地址</view>
