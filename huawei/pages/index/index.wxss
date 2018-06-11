@@ -88,6 +88,7 @@ swiper-item image{
   font-size: 18rpx;
   border: 1px solid #CA141D;
   color:#CA141D;
+  z-index: 99;
 }
 .product .product-list image{
   width: 200rpx;

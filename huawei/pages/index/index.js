@@ -31,7 +31,7 @@ Page({
          this.setData({
           theme:res.data
          })
-         console.log(res.data);
+        //  console.log(res.data);
       }    
     })
   },
