@@ -43,9 +43,17 @@ page {
     text-align: center;
     padding: 36rpx 0 73rpx;
 }
-
-.userInfo .u-name text {
+.userInfo .u-name button{
+    font-size: 30rpx;
+    line-height: 1.5;
+    background: #ffffff;
+}
+button::after{
+    border:none
+}
+.userInfo .u-name text ,.userInfo .u-name button{
     font-size: 34rpx;
+    color: #333333;
     line-height: 1.5;
 }
 
@@ -99,7 +107,7 @@ page {
 }
 
 .sign-out {
-    font-size: 30rpx;
+    font-size: 28rpx;
     height: 100rpx;
     line-height: 100rpx;
     text-align: center;

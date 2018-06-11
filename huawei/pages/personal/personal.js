@@ -1,59 +1,43 @@
 const app = getApp()
 Page({
   data: {
-    userName: '账号登录',
+    userInfo:{},
+    hasUserInfo:false,
+    canIUse:wx.canIUse('button.open-type.getUserInfo'),
     loginImage: "imgs/defaultface_user_gray.png",
     hide: true
   },
   onLoad: function () {
-    if(app.globalData.userName && app.globalData.userName){
+    if(app.globalData.userInfo){
       this.setData({
-        userName:app.globalData.userName,
-        loginImage:app.globalData.loginImage,
-        hide:false
+        userInfo:app.globalData.userInfo,
+        hasUserInfo:true,
+        hide: false
       })
     }
- },
-  logIn(){
-    let that = this;
-    wx.showLoading({
-      title:'正在登录...'
-    })
-    setTimeout(function(){
-      wx.hideLoading();
-      wx.getUserInfo({
-        success: (res)=> {
-          that.setData({
-             userName: res.userInfo.nickName,
-            loginImage: res.userInfo.avatarUrl,
-            hide: false
-         })
-         wx.setStorage({
-           key: 'loginImage',
-           data: that.data.loginImage,
-           success: function(res){
-             console.log('保存成功')
-           }
-         })
-         wx.setStorage({
-          key: 'userName',
-          data: that.data.userName,
-          success: function(res){
-            console.log('保存成功')
-          }
-        })
-         },
+  },
+  getUserInfo(e){
+      this.setData({
+        userInfo:e.detail.userInfo,
+        hasUserInfo:true,
+        hide:false
       })
-    },1000)  
+      wx.setStorage({
+      key:"user-info",
+      data:e.detail.userInfo,
+      success:function(){
+        // console.log('保存成功');
+      }
+    })
   },
   logOut(){
-    app.globalData.loginImage = null;
-    app.globalData.userName = null;
-     this.setData({
-      userName: '账号登录',
-      loginImage: "imgs/defaultface_user_gray.png",
-      hide: true,
-     })
+    wx.removeStorage({
+      key: 'user-info'
+    })
+    this.setData({
+      hasUserInfo: false,
+      hide:true
+    })
   },
   toMyOrderList: function() {
     wx.navigateTo({

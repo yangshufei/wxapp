@@ -1,11 +1,19 @@
 <view class="userInfo">
-    <view bindtap="logIn" class="u-face">
+    <view class="u-face">
         <view class="u-img">
-            <image src="{{loginImage}}"></image>
+            <block wx:if="{{!hasUserInfo && canIUse}}">
+                 <image  src="{{loginImage}}"></image>
+            </block>
+           <block wx:else>
+                <image src="{{userInfo.avatarUrl}}" background-size="cover"/>
+           </block>
         </view>
     </view>
-    <view bindtap="logIn" class="u-name">
-        <text>{{userName}}</text>
+    <view class="u-name">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击获取用户信息</button>
+        <block wx:else>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
     </view>
 </view>
 <view class="userInfo-content">
