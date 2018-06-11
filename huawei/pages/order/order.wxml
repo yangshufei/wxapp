@@ -1,12 +1,75 @@
-<view class="main">
-   <navigator url="../addressList/addressList">
-        <view wx:if="{{hasAddress}}" class="orders-address">
-           <view class="orders-address-name">{{address.name}}</view>
-           <view class="orders-address-phone">{{address.phone}}</view>
-           <view class="orders-address-detail">{{address.detail}}</view>
+<view class="section">
+<!--    没有输入地址时 -->
+    <view class="addre1" bindtap="toAddAddre" style="display:{{display1}} ">
+        <view class="left">
+            <image src="./imgs/icon_location.png" mode="widthFix" />
+            <text>点击添加地址信息</text>
         </view>
-        <view wx:else class="orders-address">
-           <view class="orders-no-address">添加收货地址</view>
+        <view class="right">
+            <image class="more" src="../../image/right.png" mode="widthFix" />
         </view>
-    </navigator>
+    </view>
+<!-- 有地址时 -->
+    <view class="addre1 addre2" bindtap="toAddAddre" style="display:{{display2}} ">
+        <view class="left">
+            <view class="left_top">
+                <image src="../../image/map2.png" mode="widthFix" /> {{name}}　{{tel}}
+            </view>
+            <view class="left_bottom">
+                地址：{{addre}}
+            </view>
+        </view>
+        <view class="right">
+            <image class="more" src="../../image/right.png" mode="widthFix" />
+        </view>
+    </view>
+    <view class="line">
+        <image src="../../image/line.jpg" mode="aspectFit" repeat="repeat" />
+    </view>
+ <!-- 发票项 -->
+    <view class="product_invoice">
+        <view class="invoice_name">电子普通发票</view>
+        <view class="invoice_category">个人</view>
+        <image src="/image/icon_arrow_more.png"></image>
+    </view>
+    <!-- 订单内容 -->
+    <view class="orderInfo">
+        <view class="send">
+            <image src="./imgs/icon_shipper.png"></image>
+            <text>华为终端配送</text>
+        </view>
+       <view class="product-info">
+           <image src="https://res5.vmallres.com/pimages//product/6901443224104/428_428_1522652416476mp.jpg"></image>
+           <view class="product_name">{{title}}</view>
+           <view class="num">×{{num}}</view>
+           <view class="price">￥{{price}}</view>
+       </view>
+       <view class="fare">
+           <view class="fare_title">配送费</view>
+           <view class="fare_price">￥0.00</view>
+       </view>
+       <view class="small-total">
+           <view class="discount">
+               <text class="discount_name">优惠：</text>
+               <text class="desc">-￥0.00</text>
+           </view>
+           <view class="total">
+               <text class="total_title">小计：</text>
+               <text class="total_price">￥{{totalPrice}}</text>
+           </view>
+       </view>
+       <view class="ticket">
+           优惠抵用券<text>(仅适用于自营实物商品)</text>
+       </view>
+       <view class="use-ticket">
+           <image src="./imgs/icon_coupon.png"></image>
+           <text>使用优惠券</text>
+       </view>
+    </view>
+    <!-- 底部 -->
+    <view class="tabBar">
+        <view class="total_pay">应付总额：</view>
+        <view class="price">￥{{totalPrice}}</view>
+        <view class="button">微信支付</view>
+    </view>
 </view>
