@@ -9,7 +9,7 @@
   <block wx:if="{{index=='0'}}">
     <!-- 详情图片 -->
     <view class="good_img">
-        <swiper autoplay="true" interval="3000" duration="800"  circular="true" bindchange="change">
+        <swiper autoplay="true" interval="3000" duration="800"  circular="true" bindchange="change" current="{{currentImage}}">
             <block wx:for="{{product[0].image}}" wx:key="{{idx}}">
                 <swiper-item>
                 <image src="{{item}}" class="slide-image"/>

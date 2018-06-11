@@ -1,5 +1,5 @@
-import util from  '../../utils/index';
 
+var index;
 Page({
 
   data: {
@@ -10,23 +10,28 @@ Page({
     grey:true,      // -号背景色
     grey1:false,    // +号背景色
     curColor:1,       // 所选颜色 版本 定制
+    currentImage:'',
     curVersion:1,
     curRequire:1,
+    onePrice:4288,  //单价
+    totalPrice:4288,   //总价
     // 评论数据
     comments:[],
     hasMore:true,
     currentPage:1,
     totalPage:1,
-    total:0,
+    total:0,  //评论数量
     noLoading:true,
     noLoadingImage:true,
     //详情数据
     detail:'',
   },
   // 获取页面评论数据
-  onLoad:function(){
+  onLoad:function(options){
+   index = options.index;
+  //  console.log(index);
     wx.request({
-      url: 'https://www.easy-mock.com/mock/5b129d3c791ed91ba99b116c/detail',
+      url: 'https://www.easy-mock.com/mock/5b129d3c791ed91ba99b116c/detail?id=1',
       success:(res)=>{
         this.setData({
           product:res.data.product,
@@ -38,7 +43,6 @@ Page({
           total:res.data.total,
           detail:res.data.detail
         })
-        console.log(res.data);
      }  
     })
   },
@@ -69,17 +73,19 @@ Page({
     this.setData({
       grey:false,
       grey1:false,
-      num
+      num,
+      totalPrice:this.data.onePrice*num
     })
   },
   // 购买数量加
   addCount(){
     let num = this.data.num;
-    let totalNum = this.data.detail[0].num;
+    let totalNum = this.data.product[0].num;
     console.log(totalNum);
     if(num >= totalNum){
       this.setData({
-        grey1:true
+        grey1:true,
+        totalPrice:this.data.onePrice*num
       })
       return;
     }
@@ -87,13 +93,15 @@ Page({
     this.setData({
       num,
       grey:false,
-      grey1:false
+      grey1:false,
+      totalPrice:this.data.onePrice*num
     })
   },
   // 选择颜色
   selectColor(e){
     this.setData({
-      curColor:e.currentTarget.dataset.id
+      curColor:e.currentTarget.dataset.id,
+      currentImage:e.currentTarget.dataset.id
     })
   },
   // 选择版本
@@ -111,19 +119,31 @@ Page({
   },
   // 点击购买按钮
   primary(){
+    // console.log(this.data.totalPrice);
     wx.navigateTo({
-      url: '/pages/order/order'
+      url: `/pages/order/order?num=${this.data.num}&title=${this.data.product[0].title}&price=${this.data.product[0].price}&totalPrice=${this.data.totalPrice}`
+    })
+    var detail ={name:this.data.product[0].title,
+                 num:this.data.num,
+                 price:this.data.product[0].price,
+                 totalPrice:this.data.totalPrice};
+    wx.setStorage({
+      key: 'detail',
+      data: detail,
+      success: function(res){
+        // console.log(detail);
+      },
     })
   },
   toComment(){
    this.setData({
-     index:1
+     index:1,
    })
   },
   // 下拉加载数据评论
   onReachBottom(){
     let {currentPage,totalPage,noLoading,noLoadingImage}=this.data;
-    console.log(currentPage,totalPage,noLoading,noLoadingImage);
+    // console.log(currentPage,totalPage,noLoading,noLoadingImage);
     if(currentPage >= totalPage){
       this.setData({
         hasMore:false
